@@ -18,7 +18,6 @@ public class LineRendererUI : Graphic
     private float unitWidth;
     private float unitHeight;
 
-    //NOTE: Naming scheme = lowercaseUppercase; can you change the name of this list. Also, the list "points" already exists
     public List<Vector2> bezierPoints;
 
     private GridRendererUI grid;
