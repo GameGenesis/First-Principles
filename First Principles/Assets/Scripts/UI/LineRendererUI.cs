@@ -5,8 +5,10 @@ using UnityEngine.UI;
 public class LineRendererUI : Graphic
 {
     public Vector2Int gridSize;
-    
+
     public List<Vector2> points = new List<Vector2>();
+
+    public bool bezierPlot = false;
 
     public float thickness = 10f;
 
@@ -14,6 +16,8 @@ public class LineRendererUI : Graphic
     private float height;
     private float unitWidth;
     private float unitHeight;
+
+    public List<Vector2> mPoints;
 
     private GridRendererUI grid;
 
@@ -31,6 +35,7 @@ public class LineRendererUI : Graphic
         }
     }
 
+    // Order of Operation = 1
     protected override void Awake()
     {
         base.Awake();
@@ -39,6 +44,19 @@ public class LineRendererUI : Graphic
             grid = GetComponentInParent<GridRendererUI>();
     }
 
+    // Polymorphism; when the class receives the values for the centrePoint...
+    public LineRendererUI(Vector2 centrePoint)
+    {
+        mPoints = new List<Vector2>
+        {
+            centrePoint + Vector2.left,
+            centrePoint + (Vector2.left + Vector2.up) * .5f,
+            centrePoint + (Vector2.right + Vector2.down) * .5f,
+            centrePoint + Vector2.right
+        };
+    }
+
+    // When a UI generates a mesh...
     protected override void OnPopulateMesh(VertexHelper vh)
     {
         vh.Clear();
@@ -54,22 +72,30 @@ public class LineRendererUI : Graphic
 
         float angle = 0;
 
-        for (int i = 0; i < points.Count - 1; i++)
+        if (bezierPlot == false)
         {
-            Vector2 point = points[i];
-            Vector2 point2 = points[i + 1];
+            for (int i = 0; i < points.Count - 1; i++)
+            {
+                Vector2 point = points[i];
+                Vector2 point2 = points[i + 1];
 
-            if (i < points.Count - 1)
-                angle = GetAngle(point, point2) + 90f;
+                if (i < points.Count - 1)
+                    angle = GetAngle(point, point2) + 90f;
 
-            DrawVerticesForPoint(point, point2, vh, angle);
+                DrawVerticesForPoint(point, point2, vh, angle);
+            }
+
+            for (int i = 0; i < points.Count - 1; i++)
+            {
+                int index = i * 4;
+                vh.AddTriangle(index + 0, index + 1, index + 2);
+                vh.AddTriangle(index + 1, index + 2, index + 3);
+            }
         }
 
-        for (int i = 0; i < points.Count - 1; i++)
+        else if (bezierPlot == true)
         {
-            int index = i * 4;
-            vh.AddTriangle(index + 0, index + 1, index + 2);
-            vh.AddTriangle(index + 1, index + 2, index + 3);
+
         }
     }
 
@@ -129,6 +155,53 @@ public class LineRendererUI : Graphic
         vertex.position = Quaternion.Euler(0, 0, angle) * new Vector3(thickness / 2, 0);
         vertex.position += new Vector3(unitWidth * point2.x, unitHeight * point2.y);
         vh.AddVert(vertex);
+    }
+
+    // For the bezier curve...
+    public Vector2 this [int i]
+    {
+        get
+        {
+            return mPoints[i];
+        }
+    }
+
+    // For the bezier curve...
+    public int NumPoints
+    {
+        get
+        {
+            return points.Count;
+        }
+    }
+
+    // For the bezier curve...
+    public int NumSegments
+    {
+        get
+        {
+            return (mPoints.Count - 4) / 3 + 1;
+        }
+    }
+
+    // For the bezier curve...
+    public void AddSegement(Vector2 anchorPos)
+    {
+        mPoints.Add(mPoints[mPoints.Count - 1] * 2 - mPoints[mPoints.Count - 2]);
+        mPoints.Add((mPoints[mPoints.Count - 1] + anchorPos) * .5f);
+        mPoints.Add(anchorPos);
+    }
+
+    // For the bezier curve...
+    public Vector2[] GetPointsInSegment(int i)
+    {
+        return new Vector2[] { points[i * 3], points[i * 3 + 1], points[i * 3 + 2], points[i * 3 + 3] };
+    }
+
+    // For the bezier curve...
+    public void MovePoint(int i, Vector2 pos)
+    {
+        points[i] = pos;
     }
 
     private void Update()
