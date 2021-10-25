@@ -19,7 +19,7 @@ public class LineRendererUI : Graphic
     private float unitHeight;
 
     //NOTE: Naming scheme = lowercaseUppercase; can you change the name of this list. Also, the list "points" already exists
-    public List<Vector2> mPoints;
+    public List<Vector2> bezierPoints;
 
     private GridRendererUI grid;
 
@@ -50,7 +50,7 @@ public class LineRendererUI : Graphic
     //Polymorphism; when the class receives the values for the centrePoint...
     public LineRendererUI(Vector2 centrePoint)
     {
-        mPoints = new List<Vector2>
+        bezierPoints = new List<Vector2>
         {
             centrePoint + Vector2.left,
             centrePoint + (Vector2.left + Vector2.up) * .5f,
@@ -165,7 +165,7 @@ public class LineRendererUI : Graphic
     {
         get
         {
-            return mPoints[i];
+            return bezierPoints[i];
         }
     }
 
@@ -183,16 +183,16 @@ public class LineRendererUI : Graphic
     {
         get
         {
-            return (mPoints.Count - 4) / 3 + 1;
+            return (bezierPoints.Count - 4) / 3 + 1;
         }
     }
 
     // For the bezier curve...
     public void AddSegement(Vector2 anchorPos)
     {
-        mPoints.Add(mPoints[mPoints.Count - 1] * 2 - mPoints[mPoints.Count - 2]);
-        mPoints.Add((mPoints[mPoints.Count - 1] + anchorPos) * .5f);
-        mPoints.Add(anchorPos);
+        bezierPoints.Add(bezierPoints[bezierPoints.Count - 1] * 2 - bezierPoints[bezierPoints.Count - 2]);
+        bezierPoints.Add((bezierPoints[bezierPoints.Count - 1] + anchorPos) * .5f);
+        bezierPoints.Add(anchorPos);
     }
 
     // For the bezier curve...
