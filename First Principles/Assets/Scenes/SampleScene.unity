@@ -1215,7 +1215,9 @@ MonoBehaviour:
   - {x: 15, y: 10}
   - {x: 20, y: 5}
   - {x: 25, y: 0}
+  bezierPlot: 0
   thickness: 10
+  mPoints: []
 --- !u!222 &1275263014
 CanvasRenderer:
   m_ObjectHideFlags: 0

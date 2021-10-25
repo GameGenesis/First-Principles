@@ -8,6 +8,7 @@ public class LineRendererUI : Graphic
 
     public List<Vector2> points = new List<Vector2>();
 
+    //This clears the graph
     public bool bezierPlot = false;
 
     public float thickness = 10f;
@@ -17,10 +18,12 @@ public class LineRendererUI : Graphic
     private float unitWidth;
     private float unitHeight;
 
+    //NOTE: Naming scheme = lowercaseUppercase; can you change the name of this list. Also, the list "points" already exists
     public List<Vector2> mPoints;
 
     private GridRendererUI grid;
 
+    //Updates the line grid based on the parent graph
     protected override void Reset()
     {
         base.Reset();
@@ -35,7 +38,7 @@ public class LineRendererUI : Graphic
         }
     }
 
-    // Order of Operation = 1
+    //Updates the line grid based on the parent graph
     protected override void Awake()
     {
         base.Awake();
@@ -44,7 +47,7 @@ public class LineRendererUI : Graphic
             grid = GetComponentInParent<GridRendererUI>();
     }
 
-    // Polymorphism; when the class receives the values for the centrePoint...
+    //Polymorphism; when the class receives the values for the centrePoint...
     public LineRendererUI(Vector2 centrePoint)
     {
         mPoints = new List<Vector2>
@@ -56,7 +59,7 @@ public class LineRendererUI : Graphic
         };
     }
 
-    // When a UI generates a mesh...
+    //When a UI generates a mesh...
     protected override void OnPopulateMesh(VertexHelper vh)
     {
         vh.Clear();
@@ -92,13 +95,9 @@ public class LineRendererUI : Graphic
                 vh.AddTriangle(index + 1, index + 2, index + 3);
             }
         }
-
-        else if (bezierPlot == true)
-        {
-
-        }
     }
 
+    //Converts the dimensions of the graph into an aspect ratio
     public Vector2 GetAspectRatio(float width, float height)
     {
         Vector2 aspectRatio = new Vector2(width, height);
@@ -108,17 +107,19 @@ public class LineRendererUI : Graphic
             aspectRatio *= 10;
         }
 
-        aspectRatio /= GCD((int)aspectRatio.x, (int)aspectRatio.y);
+        aspectRatio /= GetGreatestCommonDivisor((int)aspectRatio.x, (int)aspectRatio.y);
 
         return aspectRatio;
     }
 
+    //Checks if a float is an integer
     public bool floatIsInt(float f)
     {
         return Mathf.Approximately(f, Mathf.RoundToInt(f));
     }
 
-    public int GCD(int first, int second)
+    //Returns the greatest common divisor
+    public int GetGreatestCommonDivisor(int first, int second)
     {
         while (first != 0 && second != 0)
         {
@@ -129,12 +130,14 @@ public class LineRendererUI : Graphic
         return first == 0 ? second : first;
     }
 
+    //Gets the angle from one point to the next
     public float GetAngle(Vector2 current, Vector2 target)
     {
         Vector2 aspectRatio = GetAspectRatio(width, height);
         return (float)(Mathf.Atan2(aspectRatio.y * (target.y - current.y), aspectRatio.x * (target.x - current.x)) * (180 / Mathf.PI));
     }
 
+    //Draws vertices for each point on the graph
     private void DrawVerticesForPoint(Vector2 point, Vector2 point2, VertexHelper vh, float angle)
     {
         UIVertex vertex = UIVertex.simpleVert;
@@ -204,6 +207,7 @@ public class LineRendererUI : Graphic
         points[i] = pos;
     }
 
+    //Updates the line grid based on the parent graph
     private void Update()
     {
         if (grid != null && gridSize != grid.gridSize)
