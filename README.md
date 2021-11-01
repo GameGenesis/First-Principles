@@ -5,4 +5,4 @@ Lead Developer, Pilot, Engineer: Rayan Kaissi
 
 Co-Developer, Mission Specialist, Graphic & Sound Artist: John Seong
 
-_Made using the Unity Game Engine._
+*_Made using the Unity Game Engine._*
