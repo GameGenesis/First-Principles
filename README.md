@@ -12,4 +12,9 @@
 ---
 
 Powered by **Unity**
+
 An **Open Source** Project | **MIT** License
+
+---
+
+Expected release on **Google Play** & **Steam**
