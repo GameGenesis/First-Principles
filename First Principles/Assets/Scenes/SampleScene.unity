@@ -1164,8 +1164,8 @@ GameObject:
   - component: {fileID: 1275263014}
   - component: {fileID: 1275263013}
   m_Layer: 5
-  m_Name: Image
-  m_TagString: Untagged
+  m_Name: Line Segment
+  m_TagString: LineSegment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1196,7 +1196,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1275263011}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3447d41c6689dae4ba4710bf779eda88, type: 3}
   m_Name: 
@@ -1205,19 +1205,23 @@ MonoBehaviour:
   m_Color: {r: 1, g: 0.75911903, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  period: 5
+  transA: 1
+  transK: 1
+  transC: 1
+  transD: 1
+  power: 2
+  plotFunction: 0
+  functionType: Power
+  yValue: 0
+  xValue: 0
+  baseN: 2
   gridSize: {x: 26, y: 14}
   points:
-  - {x: 0, y: 0}
-  - {x: 1, y: 9}
-  - {x: 3, y: 3}
-  - {x: 4, y: 2}
-  - {x: 10, y: 10}
-  - {x: 15, y: 10}
-  - {x: 20, y: 5}
-  - {x: 25, y: 0}
-  bezierPlot: 0
+  - {x: 1, y: 5}
+  - {x: 2, y: 6}
+  - {x: 7, y: 8}
   thickness: 10
-  mPoints: []
 --- !u!222 &1275263014
 CanvasRenderer:
   m_ObjectHideFlags: 0

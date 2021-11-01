@@ -1,15 +1,43 @@
+// To-Do: Draw infinitely many line segments to form a curve
+// If X = Y then it's going to be a dot
+
+// First Principles: Source Code
+// Work In Progress!
+// Developed by Rayan Kaissi and John Seong
+
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class LineRendererUI : Graphic
 {
+    private float nextActionTime = 0.0f;
+
+    // Delay for five seconds...
+    [HideInInspector]
+    public float period = 5.0f;
+    
+    public float transA = 0, transK = 0, transC = 0, transD = 0;
+
+    // Power variable only applicable to 'x^n' functions — represented as 'n' here
+    // Base N variable only applicable to 'n^x' functions — represented as 'n' here
+
+    public int power = 2;
+
+    // 'Plot Function' Checkbox — lets the developer to convert the transformations to the actual depiction of a graph
+    public bool plotFunction = false;
+
+    public string functionType = "Power";
+
+    [HideInInspector]
+    public float yValue, xValue = 0;
+
+    [HideInInspector]
+    public int baseN = 2;
+
     public Vector2Int gridSize;
 
     public List<Vector2> points = new List<Vector2>();
-
-    //This clears the graph
-    public bool bezierPlot = false;
 
     public float thickness = 10f;
 
@@ -18,12 +46,10 @@ public class LineRendererUI : Graphic
     private float unitWidth;
     private float unitHeight;
 
-    //NOTE: Naming scheme = lowercaseUppercase; can you change the name of this list. Also, the list "points" already exists
-    public List<Vector2> mPoints;
-
     private GridRendererUI grid;
+    private PlotFunction plot;
 
-    //Updates the line grid based on the parent graph
+    // Updates the line grid based on the parent graph
     protected override void Reset()
     {
         base.Reset();
@@ -38,28 +64,19 @@ public class LineRendererUI : Graphic
         }
     }
 
-    //Updates the line grid based on the parent graph
+    // Updates the line grid based on the parent graph
     protected override void Awake()
     {
         base.Awake();
 
         if (grid == null)
             grid = GetComponentInParent<GridRendererUI>();
+
+        // Instantiate PlotFunction
+        plot = new PlotFunction();
     }
 
-    //Polymorphism; when the class receives the values for the centrePoint...
-    public LineRendererUI(Vector2 centrePoint)
-    {
-        mPoints = new List<Vector2>
-        {
-            centrePoint + Vector2.left,
-            centrePoint + (Vector2.left + Vector2.up) * .5f,
-            centrePoint + (Vector2.right + Vector2.down) * .5f,
-            centrePoint + Vector2.right
-        };
-    }
-
-    //When a UI generates a mesh...
+    // When a UI generates a mesh...
     protected override void OnPopulateMesh(VertexHelper vh)
     {
         vh.Clear();
@@ -75,29 +92,26 @@ public class LineRendererUI : Graphic
 
         float angle = 0;
 
-        if (bezierPlot == false)
+        for (int i = 0; i < points.Count - 1; i++)
         {
-            for (int i = 0; i < points.Count - 1; i++)
-            {
-                Vector2 point = points[i];
-                Vector2 point2 = points[i + 1];
+            Vector2 point = points[i];
+            Vector2 point2 = points[i + 1];
 
-                if (i < points.Count - 1)
-                    angle = GetAngle(point, point2) + 90f;
+            if (i < points.Count - 1)
+                angle = GetAngle(point, point2) + 90f;
 
-                DrawVerticesForPoint(point, point2, vh, angle);
-            }
+            DrawVerticesForPoint(point, point2, vh, angle);
+        }
 
-            for (int i = 0; i < points.Count - 1; i++)
-            {
-                int index = i * 4;
-                vh.AddTriangle(index + 0, index + 1, index + 2);
-                vh.AddTriangle(index + 1, index + 2, index + 3);
-            }
+        for (int i = 0; i < points.Count - 1; i++)
+        {
+            int index = i * 4;
+            vh.AddTriangle(index + 0, index + 1, index + 2);
+            vh.AddTriangle(index + 1, index + 2, index + 3);
         }
     }
 
-    //Converts the dimensions of the graph into an aspect ratio
+    // Converts the dimensions of the graph into an aspect ratio
     public Vector2 GetAspectRatio(float width, float height)
     {
         Vector2 aspectRatio = new Vector2(width, height);
@@ -112,13 +126,13 @@ public class LineRendererUI : Graphic
         return aspectRatio;
     }
 
-    //Checks if a float is an integer
+    // Checks if a float is an integer
     public bool floatIsInt(float f)
     {
         return Mathf.Approximately(f, Mathf.RoundToInt(f));
     }
 
-    //Returns the greatest common divisor
+    // Returns the greatest common divisor
     public int GetGreatestCommonDivisor(int first, int second)
     {
         while (first != 0 && second != 0)
@@ -137,7 +151,7 @@ public class LineRendererUI : Graphic
         return (float)(Mathf.Atan2(aspectRatio.y * (target.y - current.y), aspectRatio.x * (target.x - current.x)) * (180 / Mathf.PI));
     }
 
-    //Draws vertices for each point on the graph
+    // Draws vertices for each point on the graph
     private void DrawVerticesForPoint(Vector2 point, Vector2 point2, VertexHelper vh, float angle)
     {
         UIVertex vertex = UIVertex.simpleVert;
@@ -160,60 +174,26 @@ public class LineRendererUI : Graphic
         vh.AddVert(vertex);
     }
 
-    // For the bezier curve...
-    public Vector2 this [int i]
-    {
-        get
-        {
-            return mPoints[i];
-        }
-    }
-
-    // For the bezier curve...
-    public int NumPoints
-    {
-        get
-        {
-            return points.Count;
-        }
-    }
-
-    // For the bezier curve...
-    public int NumSegments
-    {
-        get
-        {
-            return (mPoints.Count - 4) / 3 + 1;
-        }
-    }
-
-    // For the bezier curve...
-    public void AddSegement(Vector2 anchorPos)
-    {
-        mPoints.Add(mPoints[mPoints.Count - 1] * 2 - mPoints[mPoints.Count - 2]);
-        mPoints.Add((mPoints[mPoints.Count - 1] + anchorPos) * .5f);
-        mPoints.Add(anchorPos);
-    }
-
-    // For the bezier curve...
-    public Vector2[] GetPointsInSegment(int i)
-    {
-        return new Vector2[] { points[i * 3], points[i * 3 + 1], points[i * 3 + 2], points[i * 3 + 3] };
-    }
-
-    // For the bezier curve...
-    public void MovePoint(int i, Vector2 pos)
-    {
-        points[i] = pos;
-    }
-
-    //Updates the line grid based on the parent graph
+    // Updates the line grid based on the parent graph
     private void Update()
     {
         if (grid != null && gridSize != grid.gridSize)
         {
             gridSize = grid.gridSize;
             SetVerticesDirty();
+        }
+
+        // If 'Plot Function' checkbox is checked...
+        if (plotFunction == true)
+        {
+            // Run the containing command every five seconds...
+            if (Time.time > nextActionTime)
+            {
+                nextActionTime += period;
+
+                // Set the global points array to the value obtained by the computeGraph function in the PlotFunction class
+                points = plot.computeGraph(functionType, xValue, yValue, transA, transK, transC, transD, power, baseN);
+            }
         }
     }
 }
