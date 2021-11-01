@@ -12,3 +12,4 @@
 ---
 
 Powered by **Unity**
+An **Open Source** Project | **MIT** License
