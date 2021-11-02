@@ -1,6 +1,3 @@
-// To-Do: Draw infinitely many line segments to form a curve
-// If X = Y then it's going to be a dot
-
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +8,9 @@ public class LineRendererUI : Graphic
 
     public List<Vector2> points = new List<Vector2>();
 
+    // List that stores the coordinates of the derivative graph; if showDerivative is false, draw the derivative graph on top of the original graph on the cartesian plane
+    public List<Vector2> dPoints = new List<Vector2>();
+
     public float thickness = 10f;
 
     private float width;
@@ -19,6 +19,8 @@ public class LineRendererUI : Graphic
     private float unitHeight;
 
     private GridRendererUI grid;
+
+    public bool showDerivative = false;
 
     protected override void Reset()
     {
