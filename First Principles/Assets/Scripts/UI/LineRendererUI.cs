@@ -28,11 +28,7 @@ public class LineRendererUI : Graphic
         if (grid == null)
             grid = GetComponentInParent<GridRendererUI>();
 
-        if (grid != null && gridSize != grid.gridSize)
-        {
-            gridSize = grid.gridSize;
-            SetVerticesDirty();
-        }
+        UpdateGridSize();
     }
 
     // Updates the line grid based on the parent graph
@@ -42,6 +38,14 @@ public class LineRendererUI : Graphic
 
         if (grid == null)
             grid = GetComponentInParent<GridRendererUI>();
+
+        UpdateGridSize();
+    }
+
+    // Updates the line grid based on the parent graph
+    private void Update()
+    {
+        UpdateGridSize();
     }
 
     // When a UI generates a mesh...
@@ -142,8 +146,7 @@ public class LineRendererUI : Graphic
         vh.AddVert(vertex);
     }
 
-    // Updates the line grid based on the parent graph
-    private void Update()
+    private void UpdateGridSize()
     {
         if (grid != null && gridSize != grid.gridSize)
         {

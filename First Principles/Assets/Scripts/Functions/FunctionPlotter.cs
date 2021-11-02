@@ -39,12 +39,18 @@ public class FunctionPlotter : MonoBehaviour
         PlotFunction(functionType);
     }
 
+    private void Update()
+    {
+        PlotFunction(functionType);
+    }
+
     public void PlotFunction(FunctionType type)
     {
         lineRenderer = FindObjectOfType<LineRendererUI>();
 
         if (lineRenderer != null)
         {
+            points.Clear();
             ComputeGraph(type, transA, transK, transC, transD, power, baseN);
             lineRenderer.points = points;
         }
