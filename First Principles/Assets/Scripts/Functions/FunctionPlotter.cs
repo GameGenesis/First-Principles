@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlotFunction : MonoBehaviour
+public class FunctionPlotter : MonoBehaviour
 {
     //Increase in xValue for each for loop iteration
     public float step = 0.5f;
@@ -26,13 +26,18 @@ public class PlotFunction : MonoBehaviour
 
     private void Awake()
     {
+        
+    }
+
+    public void PlotFunction(FunctionType type)
+    {
         lineRenderer = FindObjectOfType<LineRendererUI>();
 
         if (lineRenderer != null)
         {
-            ComputeGraph(functionType, transA, transK, transC, transD, power, baseN);
+            ComputeGraph(type, transA, transK, transC, transD, power, baseN);
             lineRenderer.points = points;
-        } 
+        }
     }
 
     // Get the values from LineRendererUI class
