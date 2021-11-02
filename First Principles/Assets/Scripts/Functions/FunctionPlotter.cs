@@ -29,6 +29,11 @@ public class FunctionPlotter : MonoBehaviour
         PlotFunction(functionType);
     }
 
+    private void OnValidate()
+    {
+        PlotFunction(functionType);
+    }
+
     private void Awake()
     {
         PlotFunction(functionType);
