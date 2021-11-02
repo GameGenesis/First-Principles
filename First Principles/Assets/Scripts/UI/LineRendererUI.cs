@@ -1,40 +1,12 @@
 // To-Do: Draw infinitely many line segments to form a curve
 // If X = Y then it's going to be a dot
 
-// First Principles: Source Code
-// Work In Progress!
-// Developed by Rayan Kaissi and John Seong
-
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class LineRendererUI : Graphic
 {
-    private float nextActionTime = 0.0f;
-
-    // Delay for five seconds...
-    [HideInInspector]
-    public float period = 5.0f;
-    
-    public float transA = 0, transK = 0, transC = 0, transD = 0;
-
-    // Power variable only applicable to 'x^n' functions — represented as 'n' here
-    // Base N variable only applicable to 'n^x' functions — represented as 'n' here
-
-    public int power = 2;
-
-    // 'Plot Function' Checkbox — lets the developer to convert the transformations to the actual depiction of a graph
-    public bool plotFunction = false;
-
-    public string functionType = "Power";
-
-    [HideInInspector]
-    public float yValue, xValue = 0;
-
-    [HideInInspector]
-    public int baseN = 2;
-
     public Vector2Int gridSize;
 
     public List<Vector2> points = new List<Vector2>();
@@ -47,7 +19,6 @@ public class LineRendererUI : Graphic
     private float unitHeight;
 
     private GridRendererUI grid;
-    private PlotFunction plot;
 
     // Updates the line grid based on the parent graph
     protected override void Reset()
@@ -71,9 +42,6 @@ public class LineRendererUI : Graphic
 
         if (grid == null)
             grid = GetComponentInParent<GridRendererUI>();
-
-        // Instantiate PlotFunction
-        plot = new PlotFunction();
     }
 
     // When a UI generates a mesh...
@@ -181,19 +149,6 @@ public class LineRendererUI : Graphic
         {
             gridSize = grid.gridSize;
             SetVerticesDirty();
-        }
-
-        // If 'Plot Function' checkbox is checked...
-        if (plotFunction == true)
-        {
-            // Run the containing command every five seconds...
-            if (Time.time > nextActionTime)
-            {
-                nextActionTime += period;
-
-                // Set the global points array to the value obtained by the computeGraph function in the PlotFunction class
-                points = plot.computeGraph(functionType, xValue, yValue, transA, transK, transC, transD, power, baseN);
-            }
         }
     }
 }
