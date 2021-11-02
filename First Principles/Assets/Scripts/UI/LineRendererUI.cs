@@ -20,7 +20,6 @@ public class LineRendererUI : Graphic
 
     private GridRendererUI grid;
 
-    // Updates the line grid based on the parent graph
     protected override void Reset()
     {
         base.Reset();
@@ -31,7 +30,6 @@ public class LineRendererUI : Graphic
         UpdateGridSize();
     }
 
-    // Updates the line grid based on the parent graph
     protected override void Awake()
     {
         base.Awake();
@@ -42,7 +40,6 @@ public class LineRendererUI : Graphic
         UpdateGridSize();
     }
 
-    // Updates the line grid based on the parent graph
     private void Update()
     {
         UpdateGridSize();
@@ -146,6 +143,7 @@ public class LineRendererUI : Graphic
         vh.AddVert(vertex);
     }
 
+    // Updates the line grid based on the parent graph
     private void UpdateGridSize()
     {
         if (grid != null && gridSize != grid.gridSize)

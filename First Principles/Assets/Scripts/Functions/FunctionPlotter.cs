@@ -34,11 +34,6 @@ public class FunctionPlotter : MonoBehaviour
         PlotFunction(functionType);
     }
 
-    private void Awake()
-    {
-        PlotFunction(functionType);
-    }
-
     private void Update()
     {
         PlotFunction(functionType);
