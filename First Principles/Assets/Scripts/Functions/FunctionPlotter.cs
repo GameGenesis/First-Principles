@@ -24,9 +24,14 @@ public class FunctionPlotter : MonoBehaviour
 
     private LineRendererUI lineRenderer;
 
+    private void Reset()
+    {
+        PlotFunction(functionType);
+    }
+
     private void Awake()
     {
-        
+        PlotFunction(functionType);
     }
 
     public void PlotFunction(FunctionType type)
