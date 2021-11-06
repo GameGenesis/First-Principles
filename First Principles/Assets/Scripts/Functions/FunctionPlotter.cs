@@ -22,6 +22,8 @@ public class FunctionPlotter : MonoBehaviour
     // Local 'points' list — should not affect the global 'points' list in the LindRendererUI class
     private List<Vector2> points = new List<Vector2>();
 
+    private List<Vector2> dPoints = new List<Vector2>();
+
     private LineRendererUI lineRenderer;
 
     private void Reset()
@@ -47,16 +49,16 @@ public class FunctionPlotter : MonoBehaviour
         {
             points.Clear();
             ComputeGraph(type, transA, transK, transC, transD, power, baseN);
+
+            lineRenderer.dPoints = dPoints;
             lineRenderer.points = points;
         }
     }
 
-    // Get the values from LineRendererUI class
     public void ComputeGraph(FunctionType functionType, float transA, float transK, float transC, float transD, int power, int baseN)
     {
         for (float i = 0; i <= 50; i += step)
         {
-            // Brute-force values from -1000 to 1000 into X
             float xValue = i;
             float yValue = 0;
 
@@ -82,7 +84,16 @@ public class FunctionPlotter : MonoBehaviour
             }
             // Add the coordinates to the array
             points.Add(new Vector2(xValue, yValue));
+
+            // Get the derivative and add to an array
+            dPoints.Add(GetDerivative());
         }
+    }
+
+    // Get the derivative of the graph
+    private Vector2 GetDerivative()
+    {
+        return (new Vector2(0, 0));
     }
 }
 

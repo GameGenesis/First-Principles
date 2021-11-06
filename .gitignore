@@ -10,9 +10,13 @@
 [Ll]ogs/
 [Mm]emoryCaptures/
 .vscode/
+[Aa]ssetsExternal/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
+
+#Ignore associated meta files of corresponding ignored assets
+[Aa]ssetsExternal.meta
 
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*
