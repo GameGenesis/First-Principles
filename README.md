@@ -1,4 +1,3 @@
-![Logo](/FirstPrinciplesLogo.png)
 # First Principles
 
 A puzzle game that visualizes Calculus functions where players are expected to solve each function that is given.
@@ -11,11 +10,7 @@ A puzzle game that visualizes Calculus functions where players are expected to s
 
 ---
 
-Powered by **Unity Engine**
-
-An **Open Source** Project | **MIT** License
-
----
+Powered by the **Unity Engine**
 
 Expected release platforms: **Google Play** & **Steam**
 
@@ -23,3 +18,5 @@ Expected release date: **TBD**
 
 ## Dependencies
 [TextMeshPro](https://docs.unity3d.com/Manual/com.unity.textmeshpro.html)
+
+![Logo](/FirstPrinciplesLogo.png)
