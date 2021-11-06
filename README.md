@@ -1,7 +1,7 @@
 ![Logo](/FirstPrinciplesLogo.png)
 # First Principles
 
-### A puzzle game that visualizes how Calculus works where players are expected to solve each function that is given. Developed by Rayan Kaissi and John Seong. ###
+A puzzle game that visualizes Calculus functions where players are expected to solve each function that is given.
 
 ---
 
@@ -11,7 +11,7 @@
 
 ---
 
-Powered by **Unity**
+Powered by **Unity Engine**
 
 An **Open Source** Project | **MIT** License
 
@@ -19,7 +19,7 @@ An **Open Source** Project | **MIT** License
 
 Expected release platforms: **Google Play** & **Steam**
 
-Expected release date: TBD
+Expected release date: **TBD**
 
 ## Dependencies
 [TextMeshPro](https://docs.unity3d.com/Manual/com.unity.textmeshpro.html)
