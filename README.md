@@ -1,6 +1,6 @@
 # First Principles
 
-A puzzle game that visualizes Calculus functions where players are expected to solve each function that is given.
+A puzzle game that visualizes the nature of a curve and its corresponding derivative function. Players are expected to solve each function that is given using Calculus.
 
 ---
 
