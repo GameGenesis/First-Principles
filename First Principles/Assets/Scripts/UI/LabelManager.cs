@@ -6,6 +6,10 @@ public class LabelManager : MonoBehaviour
 {
     [SerializeField] private GameObject labelPrefab;
 
+    //Label placement every how many grid increments
+    [SerializeField] private int horizontalIncrement = 1;
+    [SerializeField] private int verticalIncrement = 1;
+
     [SerializeField] private Vector2 xStartPos = new Vector2(0, 0);
     [SerializeField] private Vector2 yStartPos = new Vector2(0, 0);
 
@@ -30,18 +34,18 @@ public class LabelManager : MonoBehaviour
         int xMidpoint = gridRenderer.gridSize.x / 2;
         int yMidpoint = (gridRenderer.gridSize.y / 2) - 1;
 
-        for (int i = 0; i < xSize; i++)
+        for (int i = 0; i < xSize / horizontalIncrement; i++)
         {
             xLabels.Add(Instantiate(labelPrefab, transform.TransformPoint(xPos), Quaternion.identity, transform).GetComponent<TextMeshProUGUI>());
             xLabels[i].text = (i - xMidpoint).ToString();
-            xPos.x += 70;
+            xPos.x += 70 * horizontalIncrement;
         }
 
-        for (int i = 0; i < ySize; i++)
+        for (int i = 0; i < ySize / verticalIncrement; i++)
         {
             yLabels.Add(Instantiate(labelPrefab, transform.TransformPoint(yPos), Quaternion.identity, transform).GetComponent<TextMeshProUGUI>());
             yLabels[i].text = (i - yMidpoint).ToString();
-            yPos.y += 70;
+            yPos.y += 70 * verticalIncrement;
         }
     }
 
