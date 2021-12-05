@@ -3,6 +3,12 @@ using UnityEngine;
 
 public class FunctionPlotter : MonoBehaviour
 {
+    //The starting x coordinate
+    public float xStart = 0f;
+
+    //The ending x coordinate
+    public float xEnd = 10f;
+
     //Increase in xValue for each for loop iteration
     public float step = 0.5f;
 
@@ -19,10 +25,8 @@ public class FunctionPlotter : MonoBehaviour
     [HideInInspector]
     public int baseN = 2;
 
-    // Local 'points' list — should not affect the global 'points' list in the LindRendererUI class
+    // Local points list
     private List<Vector2> points = new List<Vector2>();
-
-    private List<Vector2> dPoints = new List<Vector2>();
 
     private LineRendererUI lineRenderer;
 
@@ -50,14 +54,14 @@ public class FunctionPlotter : MonoBehaviour
             points.Clear();
             ComputeGraph(type, transA, transK, transC, transD, power, baseN);
 
-            lineRenderer.dPoints = dPoints;
+            //lineRenderer.dPoints = dPoints;
             lineRenderer.points = points;
         }
     }
 
     public void ComputeGraph(FunctionType functionType, float transA, float transK, float transC, float transD, int power, int baseN)
     {
-        for (float i = 0; i <= 50; i += step)
+        for (float i = xStart; i <= xEnd; i += step)
         {
             float xValue = i;
             float yValue = 0;
@@ -86,7 +90,7 @@ public class FunctionPlotter : MonoBehaviour
             points.Add(new Vector2(xValue, yValue));
 
             // Get the derivative and add to an array
-            dPoints.Add(GetDerivative());
+            //dPoints.Add(GetDerivative());
         }
     }
 
