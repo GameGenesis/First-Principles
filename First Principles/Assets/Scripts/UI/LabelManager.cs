@@ -24,17 +24,23 @@ public class LabelManager : MonoBehaviour
         Vector2 xPos = xStartPos;
         Vector2 yPos = yStartPos;
 
-        for (int i = 0; i < gridRenderer.gridSize.x; i++)
+        int xSize = gridRenderer.gridSize.x;
+        int ySize = gridRenderer.gridSize.y - 1;
+
+        int xMidpoint = gridRenderer.gridSize.x / 2;
+        int yMidpoint = (gridRenderer.gridSize.y / 2) - 1;
+
+        for (int i = 0; i < xSize; i++)
         {
             xLabels.Add(Instantiate(labelPrefab, transform.TransformPoint(xPos), Quaternion.identity, transform).GetComponent<TextMeshProUGUI>());
-            xLabels[i].text = i.ToString();
+            xLabels[i].text = (i - xMidpoint).ToString();
             xPos.x += 70;
         }
 
-        for (int i = 0; i < gridRenderer.gridSize.y - 1; i++)
+        for (int i = 0; i < ySize; i++)
         {
             yLabels.Add(Instantiate(labelPrefab, transform.TransformPoint(yPos), Quaternion.identity, transform).GetComponent<TextMeshProUGUI>());
-            yLabels[i].text = (i + 1).ToString();
+            yLabels[i].text = (i - yMidpoint).ToString();
             yPos.y += 70;
         }
     }
