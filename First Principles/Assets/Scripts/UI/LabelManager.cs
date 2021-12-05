@@ -52,7 +52,7 @@ public class LabelManager : MonoBehaviour
         for (int i = xPositive; i < xNegative; i++)
         {
             xLabels.Add(Instantiate(labelPrefab, transform.TransformPoint(xPos), Quaternion.identity, transform).GetComponent<TextMeshProUGUI>());
-            string labelTxt = (-(i - (xSize / 2)) * horizontalIncrement).ToString();
+            string labelTxt = (-(i - (xPositive  - 1)) * horizontalIncrement).ToString();//
             xLabels[i].text = labelTxt;
             xPos.x -= 70 * horizontalIncrement;
         }
@@ -68,11 +68,11 @@ public class LabelManager : MonoBehaviour
 
         yPos = yStartPos;
         yPos.y -= 70 * verticalIncrement;
-
+        
         for (int i = yPositive; i < yNegative; i++)
         {
             yLabels.Add(Instantiate(labelPrefab, transform.TransformPoint(yPos), Quaternion.identity, transform).GetComponent<TextMeshProUGUI>());
-            string labelTxt = (-(i - (ySize / 2)) * verticalIncrement).ToString();
+            string labelTxt = (-(i - (yPositive - 1)) * verticalIncrement).ToString();
             yLabels[i].text = labelTxt;
             yPos.y -= 70 * verticalIncrement;
         }
