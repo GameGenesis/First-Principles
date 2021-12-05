@@ -3,10 +3,11 @@ using UnityEngine;
 
 public class FunctionPlotter : MonoBehaviour
 {
-    //The starting x coordinate
-    public float xStart = 0f;
+    //The origin point of the grid
+    public Vector2 gridOrigin = new Vector2(0, 0);
 
-    //The ending x coordinate
+    //The starting & ending x coordinates
+    public float xStart = 0f;
     public float xEnd = 10f;
 
     //Increase in xValue for each for loop iteration
@@ -87,7 +88,7 @@ public class FunctionPlotter : MonoBehaviour
                 yValue = transA * (float)(Mathf.Sqrt(transK * (xValue - transD)) + transC);
             }
             // Add the coordinates to the array
-            points.Add(new Vector2(xValue, yValue));
+            points.Add(new Vector2(xValue + gridOrigin.x, yValue + gridOrigin.y));
 
             // Get the derivative and add to an array
             //dPoints.Add(GetDerivative());
