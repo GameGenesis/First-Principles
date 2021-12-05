@@ -29,22 +29,34 @@ public class LabelManager : MonoBehaviour
         Vector2 yPos = yStartPos;
 
         int xSize = gridRenderer.gridSize.x;
-        int ySize = gridRenderer.gridSize.y - 1;
+        int ySize = gridRenderer.gridSize.y;
 
-        int xMidpoint = gridRenderer.gridSize.x / 2;
-        int yMidpoint = (gridRenderer.gridSize.y / 2) - 1;
+        int xPositive = xSize / (2 * horizontalIncrement) + 1;
+        int xNegative = (xPositive * 2) - 1;
 
-        for (int i = 0; i < xSize / horizontalIncrement; i++)
+        for (int i = 0; i < xPositive; i++)
         {
             xLabels.Add(Instantiate(labelPrefab, transform.TransformPoint(xPos), Quaternion.identity, transform).GetComponent<TextMeshProUGUI>());
-            xLabels[i].text = ((i - xMidpoint) * horizontalIncrement).ToString();
+            string labelTxt = (i * horizontalIncrement).ToString();
+            xLabels[i].text = labelTxt;
             xPos.x += 70 * horizontalIncrement;
         }
 
-        for (int i = 0; i < ySize / verticalIncrement; i++)
+        xPos = xStartPos;
+        xPos.x -= 70;
+
+        for (int i = xPositive ; i < xNegative; i++)
+        {
+            xLabels.Add(Instantiate(labelPrefab, transform.TransformPoint(xPos), Quaternion.identity, transform).GetComponent<TextMeshProUGUI>());
+            string labelTxt = (-(i - (xSize / 2)) * horizontalIncrement).ToString();
+            xLabels[i].text = labelTxt;
+            xPos.x -= 70 * horizontalIncrement;
+        }
+
+        for (int i = 0; i < ySize / (2 * verticalIncrement) + 1; i++)
         {
             yLabels.Add(Instantiate(labelPrefab, transform.TransformPoint(yPos), Quaternion.identity, transform).GetComponent<TextMeshProUGUI>());
-            yLabels[i].text = ((i - yMidpoint) * verticalIncrement).ToString();
+            yLabels[i].text = (i * verticalIncrement).ToString();
             yPos.y += 70 * verticalIncrement;
         }
     }

@@ -486,8 +486,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   labelPrefab: {fileID: 1874349300418338110, guid: ac56370be3490ad40b36a981455742e7, type: 3}
-  xStartPos: {x: -860, y: -475}
-  yStartPos: {x: -890, y: -370}
+  horizontalIncrement: 1
+  verticalIncrement: 1
+  xStartPos: {x: 50, y: -475}
+  yStartPos: {x: -890, y: 50}
 --- !u!1 &1275263011
 GameObject:
   m_ObjectHideFlags: 0
