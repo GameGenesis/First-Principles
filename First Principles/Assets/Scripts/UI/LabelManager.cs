@@ -34,6 +34,10 @@ public class LabelManager : MonoBehaviour
         int xPositive = xSize / (2 * horizontalIncrement) + 1;
         int xNegative = (xPositive * 2) - 1;
 
+        int yPositive = ySize / (2 * verticalIncrement) + 1;
+        int yNegative = (yPositive * 2) - 1;
+
+        //Horizontal Labels
         for (int i = 0; i < xPositive; i++)
         {
             xLabels.Add(Instantiate(labelPrefab, transform.TransformPoint(xPos), Quaternion.identity, transform).GetComponent<TextMeshProUGUI>());
@@ -53,11 +57,24 @@ public class LabelManager : MonoBehaviour
             xPos.x -= 70 * horizontalIncrement;
         }
 
-        for (int i = 0; i < ySize / (2 * verticalIncrement) + 1; i++)
+        //Vertical Labels
+        for (int i = 0; i < yPositive; i++)
         {
             yLabels.Add(Instantiate(labelPrefab, transform.TransformPoint(yPos), Quaternion.identity, transform).GetComponent<TextMeshProUGUI>());
-            yLabels[i].text = (i * verticalIncrement).ToString();
+            string labelTxt = (i * verticalIncrement).ToString();
+            yLabels[i].text = labelTxt;
             yPos.y += 70 * verticalIncrement;
+        }
+
+        yPos = yStartPos;
+        yPos.y -= 70;
+
+        for (int i = yPositive; i < yNegative; i++)
+        {
+            yLabels.Add(Instantiate(labelPrefab, transform.TransformPoint(yPos), Quaternion.identity, transform).GetComponent<TextMeshProUGUI>());
+            string labelTxt = (-(i - (ySize / 2)) * verticalIncrement).ToString();
+            yLabels[i].text = labelTxt;
+            yPos.y -= 70 * verticalIncrement;
         }
     }
 
