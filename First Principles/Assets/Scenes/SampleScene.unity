@@ -426,7 +426,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  gridSize: {x: 26, y: 14}
+  gridSize: {x: 13, y: 7}
   thickness: 2
   centerLineThickness: 8
 --- !u!222 &520425347
@@ -543,7 +543,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 0.75911903, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  gridSize: {x: 26, y: 14}
+  gridSize: {x: 13, y: 7}
   points:
   - {x: 5, y: 17.240002}
   - {x: 5.1, y: 16.9856}
