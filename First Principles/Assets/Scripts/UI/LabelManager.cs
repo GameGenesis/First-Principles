@@ -28,6 +28,9 @@ public class LabelManager : MonoBehaviour
         Vector2 xPos = xStartPos;
         Vector2 yPos = yStartPos;
 
+        float xPosOffset = gridRenderer.rectTransform.rect.width / gridRenderer.gridSize.x;
+        float yPosOffset = gridRenderer.rectTransform.rect.height / gridRenderer.gridSize.y;
+
         int xSize = gridRenderer.gridSize.x;
         int ySize = gridRenderer.gridSize.y;
 
@@ -43,18 +46,18 @@ public class LabelManager : MonoBehaviour
             xLabels.Add(Instantiate(labelPrefab, transform.TransformPoint(xPos), Quaternion.identity, transform).GetComponent<TextMeshProUGUI>());
             string labelTxt = (i * horizontalIncrement).ToString();
             xLabels[i].text = labelTxt;
-            xPos.x += 70 * horizontalIncrement;
+            xPos.x += xPosOffset * horizontalIncrement;
         }
 
         xPos = xStartPos;
-        xPos.x -= 70 * horizontalIncrement;
+        xPos.x -= xPosOffset * horizontalIncrement;
 
         for (int i = xPositive; i < xNegative; i++)
         {
             xLabels.Add(Instantiate(labelPrefab, transform.TransformPoint(xPos), Quaternion.identity, transform).GetComponent<TextMeshProUGUI>());
             string labelTxt = (-(i - (xPositive  - 1)) * horizontalIncrement).ToString();//
             xLabels[i].text = labelTxt;
-            xPos.x -= 70 * horizontalIncrement;
+            xPos.x -= xPosOffset * horizontalIncrement;
         }
 
         //Vertical Labels
@@ -63,23 +66,18 @@ public class LabelManager : MonoBehaviour
             yLabels.Add(Instantiate(labelPrefab, transform.TransformPoint(yPos), Quaternion.identity, transform).GetComponent<TextMeshProUGUI>());
             string labelTxt = (i * verticalIncrement).ToString();
             yLabels[i].text = labelTxt;
-            yPos.y += 70 * verticalIncrement;
+            yPos.y += yPosOffset * verticalIncrement;
         }
 
         yPos = yStartPos;
-        yPos.y -= 70 * verticalIncrement;
+        yPos.y -= yPosOffset * verticalIncrement;
         
         for (int i = yPositive; i < yNegative; i++)
         {
             yLabels.Add(Instantiate(labelPrefab, transform.TransformPoint(yPos), Quaternion.identity, transform).GetComponent<TextMeshProUGUI>());
             string labelTxt = (-(i - (yPositive - 1)) * verticalIncrement).ToString();
             yLabels[i].text = labelTxt;
-            yPos.y -= 70 * verticalIncrement;
+            yPos.y -= yPosOffset * verticalIncrement;
         }
-    }
-
-    void Update()
-    {
-        
     }
 }
