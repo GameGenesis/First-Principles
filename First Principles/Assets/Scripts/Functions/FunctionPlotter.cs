@@ -3,9 +3,6 @@ using UnityEngine;
 
 public class FunctionPlotter : MonoBehaviour
 {
-    //The origin point of the grid
-    public Vector2 gridOrigin = new Vector2(0, 0);
-
     //The starting & ending x coordinates
     public float xStart = 0f;
     public float xEnd = 10f;
@@ -62,6 +59,8 @@ public class FunctionPlotter : MonoBehaviour
 
     public void ComputeGraph(FunctionType functionType, float transA, float transK, float transC, float transD, int power, int baseN)
     {
+        Vector2Int gridOrigin = lineRenderer.gridSize / 2;
+
         for (float i = xStart; i <= xEnd; i += step)
         {
             float xValue = i;
