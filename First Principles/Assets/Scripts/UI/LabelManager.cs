@@ -37,14 +37,14 @@ public class LabelManager : MonoBehaviour
         for (int i = 0; i < xSize / horizontalIncrement; i++)
         {
             xLabels.Add(Instantiate(labelPrefab, transform.TransformPoint(xPos), Quaternion.identity, transform).GetComponent<TextMeshProUGUI>());
-            xLabels[i].text = (i - xMidpoint).ToString();
+            xLabels[i].text = ((i - xMidpoint) * horizontalIncrement).ToString();
             xPos.x += 70 * horizontalIncrement;
         }
 
         for (int i = 0; i < ySize / verticalIncrement; i++)
         {
             yLabels.Add(Instantiate(labelPrefab, transform.TransformPoint(yPos), Quaternion.identity, transform).GetComponent<TextMeshProUGUI>());
-            yLabels[i].text = (i - yMidpoint).ToString();
+            yLabels[i].text = ((i - yMidpoint) * verticalIncrement).ToString();
             yPos.y += 70 * verticalIncrement;
         }
     }
