@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class GridRendererUI : Graphic
 {
     public Vector2Int gridSize = new Vector2Int(1, 1);
-    public float thickness = 10f;
+    public float thickness = 2f;
+    public float centerLineThickness = 6f;
 
     private float width;
     private float height;
@@ -33,6 +34,8 @@ public class GridRendererUI : Graphic
                 count++;
             }
         }
+
+        DrawCenterLine(count, vh);
     }
 
     private void DrawCell(int x, int y, int index, VertexHelper vh)
@@ -88,5 +91,50 @@ public class GridRendererUI : Graphic
         //Bottom Edge
         vh.AddTriangle(offset + 3, offset + 0, offset + 4);
         vh.AddTriangle(offset + 4, offset + 7, offset + 3);
+    }
+
+    private void DrawCenterLine(int index, VertexHelper vh)
+    {
+        float width = rectTransform.rect.width;
+        float height = rectTransform.rect.height;
+
+        float centerLineOffset = centerLineThickness / 2;
+
+        UIVertex vertex = UIVertex.simpleVert;
+        vertex.color = color;
+
+        //Horizontal Line
+        vertex.position = new Vector3(0, (height / 2) - centerLineOffset);
+        vh.AddVert(vertex);
+
+        vertex.position = new Vector3(0, (height / 2) + centerLineOffset);
+        vh.AddVert(vertex);
+
+        vertex.position = new Vector3(width, (height / 2) + centerLineOffset);
+        vh.AddVert(vertex);
+
+        vertex.position = new Vector3(width, (height / 2) - centerLineOffset);
+        vh.AddVert(vertex);
+
+        int offset = index * 8;
+
+        vh.AddTriangle(offset + 0, offset + 1, offset + 2);
+        vh.AddTriangle(offset + 2, offset + 3, offset + 0);
+
+        //Vertical Line
+        vertex.position = new Vector3((width / 2) - centerLineOffset, 0);
+        vh.AddVert(vertex);
+
+        vertex.position = new Vector3((width / 2) - centerLineOffset, height);
+        vh.AddVert(vertex);
+
+        vertex.position = new Vector3((width / 2) + centerLineOffset, height);
+        vh.AddVert(vertex);
+
+        vertex.position = new Vector3((width / 2) + centerLineOffset, 0);
+        vh.AddVert(vertex);
+
+        vh.AddTriangle(offset + 4, offset + 5, offset + 6);
+        vh.AddTriangle(offset + 6, offset + 7, offset + 4);
     }
 }
