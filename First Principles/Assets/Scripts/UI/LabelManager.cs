@@ -11,6 +11,9 @@ public class LabelManager : MonoBehaviour
     [SerializeField] private int horizontalIncrement = 1;
     [SerializeField] private int verticalIncrement = 1;
 
+    //Show the 0 label for the x axis
+    [SerializeField] private bool xAxisOriginLabel = true;
+
     [SerializeField] private Vector2 xStartPos = new Vector2(0, 0);
     [SerializeField] private Vector2 yStartPos = new Vector2(0, 0);
 
@@ -49,8 +52,16 @@ public class LabelManager : MonoBehaviour
         int yNegative = (yPositive * 2) - 1;
 
         //Horizontal Labels
+
         for (int i = 0; i < xPositive; i++)
         {
+            if (i == 0 && !xAxisOriginLabel)
+            {
+                xLabels.Add(null);
+                xPos.x += xPosOffset * horizontalIncrement;//
+                continue;
+            }
+
             xLabels.Add(Instantiate(labelPrefab, transform.TransformPoint(xPos), Quaternion.identity, transform).GetComponent<TextMeshProUGUI>());
             string labelTxt = (i * horizontalIncrement).ToString();
             xLabels[i].text = labelTxt;
