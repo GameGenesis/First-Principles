@@ -10,7 +10,7 @@ A puzzle game that visualizes the nature of a curve and its corresponding deriva
 
 ---
 
-Powered by the **Unity Engine**
+Powered by the **Unity Game Engine**
 
 Expected release platforms: **Google Play** & **Steam**
 
