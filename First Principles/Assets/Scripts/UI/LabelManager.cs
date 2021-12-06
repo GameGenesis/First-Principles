@@ -58,7 +58,7 @@ public class LabelManager : MonoBehaviour
             if (i == 0 && !xAxisOriginLabel)
             {
                 xLabels.Add(null);
-                xPos.x += xPosOffset * horizontalIncrement;//
+                xPos.x += xPosOffset * horizontalIncrement;
                 continue;
             }
 
