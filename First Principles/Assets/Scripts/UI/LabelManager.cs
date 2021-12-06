@@ -19,18 +19,6 @@ public class LabelManager : MonoBehaviour
 
     private GridRendererUI gridRenderer;
 
-    private void Reset()
-    {
-        gridRenderer = FindObjectOfType<GridRendererUI>();
-    }
-
-    private void OnValidate()
-    {
-        if (gridRenderer == null)
-            gridRenderer = FindObjectOfType<GridRendererUI>();
-        GenerateLabels();
-    }
-
     private void Awake()
     {
         gridRenderer = FindObjectOfType<GridRendererUI>();
@@ -106,7 +94,7 @@ public class LabelManager : MonoBehaviour
         xLabels.Clear();
         yLabels.Clear();
 
-        if(transform.childCount > 0)
+        if (transform.childCount > 0)
         {
             for (int i = 0; i < transform.childCount; i++)
             {
