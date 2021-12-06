@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using TMPro;
 
 public class LabelManager : MonoBehaviour
@@ -18,13 +19,32 @@ public class LabelManager : MonoBehaviour
 
     private GridRendererUI gridRenderer;
 
+    private void Reset()
+    {
+        gridRenderer = FindObjectOfType<GridRendererUI>();
+    }
+
+    private void OnValidate()
+    {
+        if (gridRenderer == null)
+            gridRenderer = FindObjectOfType<GridRendererUI>();
+        GenerateLabels();
+    }
+
     private void Awake()
     {
         gridRenderer = FindObjectOfType<GridRendererUI>();
     }
 
-    void Start()
+    private void Start()
     {
+        GenerateLabels();
+    }
+
+    public void GenerateLabels()
+    {
+        DeleteCurrentLabels();
+
         Vector2 xPos = xStartPos;
         Vector2 yPos = yStartPos;
 
@@ -55,7 +75,7 @@ public class LabelManager : MonoBehaviour
         for (int i = xPositive; i < xNegative; i++)
         {
             xLabels.Add(Instantiate(labelPrefab, transform.TransformPoint(xPos), Quaternion.identity, transform).GetComponent<TextMeshProUGUI>());
-            string labelTxt = (-(i - (xPositive  - 1)) * horizontalIncrement).ToString();//
+            string labelTxt = (-(i - (xPositive - 1)) * horizontalIncrement).ToString();//
             xLabels[i].text = labelTxt;
             xPos.x -= xPosOffset * horizontalIncrement;
         }
@@ -71,13 +91,27 @@ public class LabelManager : MonoBehaviour
 
         yPos = yStartPos;
         yPos.y -= yPosOffset * verticalIncrement;
-        
+
         for (int i = yPositive; i < yNegative; i++)
         {
             yLabels.Add(Instantiate(labelPrefab, transform.TransformPoint(yPos), Quaternion.identity, transform).GetComponent<TextMeshProUGUI>());
             string labelTxt = (-(i - (yPositive - 1)) * verticalIncrement).ToString();
             yLabels[i].text = labelTxt;
             yPos.y -= yPosOffset * verticalIncrement;
+        }
+    }
+
+    private void DeleteCurrentLabels()
+    {
+        xLabels.Clear();
+        yLabels.Clear();
+
+        if(transform.childCount > 0)
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                Destroy(transform.GetChild(i).gameObject);
+            }
         }
     }
 }
