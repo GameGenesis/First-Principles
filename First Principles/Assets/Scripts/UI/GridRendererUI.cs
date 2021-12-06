@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GridRendererUI : Graphic
 {
-    public Vector2Int gridSize = new Vector2Int(1, 1);
+    public Vector2Int gridSize = new Vector2Int(2, 2);
     public float thickness = 2f;
     public float centerLineThickness = 6f;
 
@@ -13,6 +13,29 @@ public class GridRendererUI : Graphic
     private float height;
     private float cellWidth;
     private float cellHeight;
+
+    private LabelManager labelManager;
+
+    protected override void OnValidate()
+    {
+        base.OnValidate();
+
+        if (gridSize.x % 2 == 1)
+            gridSize.x += 1;
+
+        if (gridSize.y % 2 == 1)
+            gridSize.y += 1;
+    }
+
+    protected override void Reset()
+    {
+        base.Reset();
+
+        if (labelManager == null)
+            labelManager = FindObjectOfType<LabelManager>();
+        labelManager.GenerateLabels();
+        SetVerticesDirty();
+    }
 
     protected override void OnPopulateMesh(VertexHelper vh)
     {
