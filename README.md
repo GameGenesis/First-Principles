@@ -4,7 +4,7 @@ A puzzle game that visualizes the nature of a curve and its corresponding deriva
 
 The game will be released with a total of four editions:
 1. Pre-Calculus: The Nature of Functions
-2. The Fundamentals of Calculus: Limit and Differentiation
+2. The Fundamentals of Calculus: Limits and Differentiation
 3. Integral Calculus: The Most Powerful Humanmade Tool
 4. Infinite Series: Let's Explore Above and Beyond
 
