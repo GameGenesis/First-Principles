@@ -1,4 +1,5 @@
 # First Principles
+## Work in Progress!
 
 A puzzle game that visualizes the nature of a curve and its corresponding derivative function, and how various rules (e.g. power rule, product rule, quotient rule, chain rule, squeeze theorem, and L'Hopital's rule) of differentiation can work in a given equation. It further clarifies the relationship between the rules; for example, proving the mechanism behind power rule using the first principles lim h->0 (f(x+h) - f(x)) / h, or explaining the product rule using the power rule. Same goes for the editions that will be released later, which include topics such as definite/indefinite integration and infinite series.
 
