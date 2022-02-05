@@ -20,7 +20,6 @@ public class FunctionPlotter : MonoBehaviour
     //The type of function to be plotted
     public FunctionType functionType;
 
-    [HideInInspector]
     public int baseN = 2;
 
     // Local points list
@@ -42,7 +41,7 @@ public class FunctionPlotter : MonoBehaviour
     {
         PlotFunction(functionType);
     }
-
+    
     public void PlotFunction(FunctionType type)
     {
         lineRenderer = FindObjectOfType<LineRendererUI>();
@@ -50,6 +49,7 @@ public class FunctionPlotter : MonoBehaviour
         if (lineRenderer != null)
         {
             points.Clear();
+            ComputeGraph(type, transA, transK, transC, transD, power, baseN);
             ComputeGraph(type, transA, transK, transC, transD, power, baseN);
 
             //lineRenderer.dPoints = dPoints;
