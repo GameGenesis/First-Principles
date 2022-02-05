@@ -22,10 +22,13 @@ public class FunctionPlotter : MonoBehaviour
 
     public int baseN = 2;
 
+    public bool differentiate = false;
+
     // Local points list
     private List<Vector2> points = new List<Vector2>();
 
     private LineRendererUI lineRenderer;
+    private GameObject derivativeLine;
 
     private void Reset()
     {
@@ -46,6 +49,8 @@ public class FunctionPlotter : MonoBehaviour
     {
         lineRenderer = FindObjectOfType<LineRendererUI>();
 
+        derivativeLine = GameObject.FindWithTag("DerivativeLine");
+
         if (lineRenderer != null)
         {
             points.Clear();
@@ -54,6 +59,16 @@ public class FunctionPlotter : MonoBehaviour
 
             //lineRenderer.dPoints = dPoints;
             lineRenderer.points = points;
+        }
+
+        if (differentiate == true)
+        {
+            derivativeLine.SetActive(true);
+        }
+
+        else if (differentiate == false)
+        {
+            derivativeLine.SetActive(false);
         }
     }
 

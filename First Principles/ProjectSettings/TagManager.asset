@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Dots
   - LineSegment
+  - DerivativeLine
   layers:
   - Default
   - TransparentFX
