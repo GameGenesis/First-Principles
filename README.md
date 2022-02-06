@@ -1,5 +1,6 @@
 # First Principles: An Interactive Module
 A graphing calculator that *actually* teaches you something.
+
 [Official Documentation](https://github.com/GameGenesis/First-Principles/wiki/First-Principles-Official-Documentation)
 
 ## Work in Progress!
