@@ -22,20 +22,18 @@ public class FunctionPlotter : MonoBehaviour
     //The type of function to be plotted
     public FunctionType functionType;
 
-    [HideInInspector]
     public int baseN = 2;
+
+    public bool differentiate = false;
 
     // Local points list
     private List<Vector2> points = new List<Vector2>();
     private List<Vector2> dPoints = new List<Vector2>();
 
     private LineRendererUI lineRenderer;
-<<<<<<< Updated upstream
-=======
     private DerivRendererUI derivRenderer;
 
     public GameObject derivativeLine;
->>>>>>> Stashed changes
 
     private void Reset()
     {
@@ -62,11 +60,10 @@ public class FunctionPlotter : MonoBehaviour
             points.Clear();
 
             ComputeGraph(type, transA, transK, transC, transD, power, baseN);
+            ComputeGraph(type, transA, transK, transC, transD, power, baseN);
 
             lineRenderer.points = points;
         }
-<<<<<<< Updated upstream
-=======
 
         if (differentiate == true)
         {
@@ -84,7 +81,6 @@ public class FunctionPlotter : MonoBehaviour
             dPoints.Clear();
             derivativeLine.SetActive(false);
         }
->>>>>>> Stashed changes
     }
 
     public void ComputeGraph(FunctionType functionType, float transA, float transK, float transC, float transD, int power, int baseN)
