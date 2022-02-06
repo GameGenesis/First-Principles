@@ -31,6 +31,8 @@ Expected release platforms: **Google Play** & **Steam**
 
 Expected release date: **TBD**
 
+---
+
 ## Dependencies
 [TextMeshPro](https://docs.unity3d.com/Manual/com.unity.textmeshpro.html)
 
