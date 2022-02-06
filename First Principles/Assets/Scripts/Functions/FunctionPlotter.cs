@@ -38,21 +38,20 @@ public class FunctionPlotter : MonoBehaviour
 
     private void Reset()
     {
-        FunctionType functionType;
-        functionType = this.functionType;
-
-        PlotFunction(functionType);
+        InitPlotFunction();
     }
 
     private void OnValidate()
     {
-        FunctionType functionType;
-        functionType = this.functionType;
-
-        PlotFunction(functionType);
+        InitPlotFunction();
     }
 
     private void Update()
+    {
+        InitPlotFunction();
+    }
+
+    public void InitPlotFunction()
     {
         FunctionType functionType;
         functionType = this.functionType;
@@ -60,7 +59,13 @@ public class FunctionPlotter : MonoBehaviour
         PlotFunction(functionType);
     }
 
-    public void PlotFunction(FunctionType type)
+    public void GraphRefresh()
+    {
+        lineSegment.SetActive(false);
+        lineSegment.SetActive(true);
+    }
+
+    private void PlotFunction(FunctionType type)
     {
         lineRenderer = FindObjectOfType<LineRendererUI>();
         derivRenderer = FindObjectOfType<DerivRendererUI>();
@@ -69,8 +74,7 @@ public class FunctionPlotter : MonoBehaviour
         {
             points.Clear();
 
-            lineSegment.SetActive(false);
-            lineSegment.SetActive(true);
+            GraphRefresh();
 
             ComputeGraph(type, transA, transK, transC, transD, power, baseN);
             ComputeGraph(type, transA, transK, transC, transD, power, baseN);
@@ -80,18 +84,22 @@ public class FunctionPlotter : MonoBehaviour
 
         if (differentiate == true)
         {
+            derivativeLine.SetActive(false);
             derivativeLine.SetActive(true);
 
-            if (derivRenderer != null)
-            {
-                dPoints.Clear();
-                derivRenderer.points = dPoints;
-            }
+            dPoints.Clear();
+
+            ComputeGraph(type, transA, transK, transC, transD, power, baseN);
+            ComputeGraph(type, transA, transK, transC, transD, power, baseN);
+
+            derivRenderer.points = dPoints;
         }
 
         else if (differentiate == false)
         {
             dPoints.Clear();
+
+            derivativeLine.SetActive(true);
             derivativeLine.SetActive(false);
         }
     }
