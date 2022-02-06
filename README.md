@@ -22,6 +22,6 @@ The game will be released with a total of *four* editions:
 ## Dependencies
 [TextMeshPro](https://docs.unity3d.com/Manual/com.unity.textmeshpro.html)
 
-![Logo](/FirstPrinciplesLogo.png)
-
 **MIT** License | **First Principles** is a part of a **not-for-profit** and an **open-source** project *College Math For Toddlers*.
+
+![Logo](/FirstPrinciplesLogo.png)
