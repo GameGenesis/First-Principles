@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LineRendererUI : Graphic
+public class DerivRendererUI : Graphic
 {
     public Vector2Int gridSize;
 

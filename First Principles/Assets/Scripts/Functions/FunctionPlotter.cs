@@ -17,6 +17,8 @@ public class FunctionPlotter : MonoBehaviour
 
     public int power = 2;
 
+    private int hValue = (int)(Mathf.Pow(10, -8));
+
     //The type of function to be plotted
     public FunctionType functionType;
 
@@ -25,8 +27,15 @@ public class FunctionPlotter : MonoBehaviour
 
     // Local points list
     private List<Vector2> points = new List<Vector2>();
+    private List<Vector2> dPoints = new List<Vector2>();
 
     private LineRendererUI lineRenderer;
+<<<<<<< Updated upstream
+=======
+    private DerivRendererUI derivRenderer;
+
+    public GameObject derivativeLine;
+>>>>>>> Stashed changes
 
     private void Reset()
     {
@@ -46,62 +55,104 @@ public class FunctionPlotter : MonoBehaviour
     public void PlotFunction(FunctionType type)
     {
         lineRenderer = FindObjectOfType<LineRendererUI>();
+        derivRenderer = FindObjectOfType<DerivRendererUI>();
 
         if (lineRenderer != null)
         {
             points.Clear();
+
             ComputeGraph(type, transA, transK, transC, transD, power, baseN);
 
-            //lineRenderer.dPoints = dPoints;
             lineRenderer.points = points;
         }
+<<<<<<< Updated upstream
+=======
+
+        if (differentiate == true)
+        {
+            derivativeLine.SetActive(true);
+
+            if (derivRenderer != null)
+            {
+                dPoints.Clear();
+                derivRenderer.points = dPoints;
+            }
+        }
+
+        else if (differentiate == false)
+        {
+            dPoints.Clear();
+            derivativeLine.SetActive(false);
+        }
+>>>>>>> Stashed changes
     }
 
     public void ComputeGraph(FunctionType functionType, float transA, float transK, float transC, float transD, int power, int baseN)
     {
         Vector2Int gridOrigin = lineRenderer.gridSize / 2;
 
-        for (float i = xStart; i <= xEnd; i += step)
+        for (float i = 0; i <= 50; i += step)
         {
             float xValue = i;
             float yValue = 0;
+
+            float dyValue = 0;
 
             // Power of N Function
             if (functionType == FunctionType.Power)
             {
                 yValue = transA * (float)(Mathf.Pow(transK * (xValue - transD), power) + transC);
+
+                // Differentiate
+                dyValue = ((transA * (float)(Mathf.Pow(transK * ((xValue + hValue) - transD), power) + transC)) - (transA * (float)(Mathf.Pow(transK * (xValue - transD), power) + transC))) / hValue;
             }
             // Absolute Value Function
             else if (functionType == FunctionType.Absolute)
             {
                 yValue = transA * (float)(Mathf.Abs(transK * (xValue - transD)) + transC);
+
+                // Differentiate
+                dyValue = ((transA * (float)(Mathf.Abs(transK * ((xValue + hValue) - transD)) + transC)) - (transA * (float)(Mathf.Abs(transK * (xValue - transD)) + transC))) / hValue;
             }
             // Exponential Function
             else if (functionType == FunctionType.Exponential)
             {
                 yValue = transA * (float)(Mathf.Pow(transK * baseN, (xValue - transD)) + transC);
+
+                // Differentiate
+                dyValue = ((transA * (float)(Mathf.Pow(transK * baseN, ((xValue + hValue) - transD)) + transC)) - (transA * (float)(Mathf.Pow(transK * baseN, (xValue - transD)) + transC))) / hValue;
             }
             // Square Root Function
             else if (functionType == FunctionType.SquareRoot)
             {
                 yValue = transA * (float)(Mathf.Sqrt(transK * (xValue - transD)) + transC);
+
+                // Differentiate
+                dyValue = ((transA * (float)(Mathf.Sqrt(transK * ((xValue + hValue) - transD)) + transC)) - (transA * (float)(Mathf.Sqrt(transK * (xValue - transD)) + transC))) / hValue;
+            }
+
+            else if (functionType == FunctionType.Sine)
+            {
+                yValue = transA * (float)(Mathf.Sin(transK * (xValue - transD)) + transC);
+
+                dyValue = transA * (float)(Mathf.Cos(transK * (xValue - transD)) + transC);
+            }
+            else if (functionType == FunctionType.Cosine)
+            {
+                yValue = transA * (float)(Mathf.Cos(transK * (xValue - transD)) + transC);
+
+                dyValue = transA * (float)(Mathf.Sin(transK * (xValue - transD)) + transC);
             }
             // Add the coordinates to the array
             points.Add(new Vector2(xValue + gridOrigin.x, yValue + gridOrigin.y));
 
-            // Get the derivative and add to an array
-            //dPoints.Add(GetDerivative());
+            // Get the differentiated coordinates to another array
+            dPoints.Add(new Vector2(xValue + gridOrigin.x, dyValue + gridOrigin.y));
         }
-    }
-
-    // Get the derivative of the graph
-    private Vector2 GetDerivative()
-    {
-        return (new Vector2(0, 0));
     }
 }
 
 public enum FunctionType
 {
-    Power, Absolute, Exponential, SquareRoot
+    Power, Absolute, Exponential, SquareRoot, Sine, Cosine
 }
