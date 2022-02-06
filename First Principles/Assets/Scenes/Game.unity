@@ -430,6 +430,8 @@ MonoBehaviour:
   gridSize: {x: 26, y: 14}
   thickness: 2
   centerLineThickness: 8
+  centerLine: {r: 1, g: 1, b: 1, a: 0.39215687}
+  outsideLine: {r: 1, g: 1, b: 1, a: 0.15686275}
 --- !u!222 &520425347
 CanvasRenderer:
   m_ObjectHideFlags: 0
