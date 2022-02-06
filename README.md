@@ -1,5 +1,5 @@
 # First Principles: An Interactive Module
-A graphing calculator that *actually* teaches you something. Developed by [Rayan Kaissi](https://github.com/GameGenesis) and [John Seong](https://github.com/wonmor). Powered by **Unity**.
+A graphing calculator that *actually* teaches you something. Developed by [Rayan Kaissi](https://github.com/GameGenesis) and [John Seong](https://github.com/wonmor). Powered by **Unity** Game Engine.
 
 [Official Documentation](https://github.com/GameGenesis/First-Principles/wiki/First-Principles-Official-Documentation)
 
