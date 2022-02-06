@@ -1,13 +1,35 @@
+/*
+ * 
+ * FunctionPlotter.cs Written by John Seong
+ * An Open-Source Project
+ * Main Features:
+ * 1. Plot Functions
+ * 2. Plot Their Corresponding First Derivatives
+ * Enjoy :)
+ * 
+ */
+
+
+/*
+
+:: What is Differentation? ::
+
+In mathematics, the derivative of a function of a real variable measures the sensitivity
+to change of the function value with respect to a change in its argument.
+Derivatives are a fundamental tool of calculus.
+
+*/
+
 using System.Collections.Generic;
 using UnityEngine;
 
 public class FunctionPlotter : MonoBehaviour
 {
-    //The starting & ending x coordinates
+    // The starting & ending x coordinates
     public float xStart = 0f;
     public float xEnd = 10f;
 
-    //Increase in xValue for each for loop iteration
+    // Increase in xValue for each for loop iteration
     public float step = 0.5f;
 
     public float transA = 0, transK = 0, transC = 0, transD = 0;
@@ -17,9 +39,10 @@ public class FunctionPlotter : MonoBehaviour
 
     public int power = 2;
 
+    // A infinitesimally small number chosen in order to perform numerical differentiation
     private float hValue = (float)(Mathf.Pow(10, -4));
 
-    //The type of function to be plotted
+    // The type of function to be plotted
     public FunctionType functionType;
 
     public int baseN = 2;
@@ -59,6 +82,7 @@ public class FunctionPlotter : MonoBehaviour
         PlotFunction(functionType);
     }
 
+    // Refresh ONLY the original function graph, not the derivative one
     public void GraphRefresh()
     {
         lineSegment.SetActive(false);
@@ -83,6 +107,7 @@ public class FunctionPlotter : MonoBehaviour
 
         if (differentiate == true && lineRenderer != null)
         {
+            // Refresh ONLY the derivative graph & show on the UI
             derivativeLine.SetActive(false);
             derivativeLine.SetActive(true);
 
@@ -105,6 +130,7 @@ public class FunctionPlotter : MonoBehaviour
         {
             dPoints.Clear();
 
+            // Refresh ONLY the derivative graph & hide on the UI
             derivativeLine.SetActive(true);
             derivativeLine.SetActive(false);
         }
@@ -134,7 +160,7 @@ public class FunctionPlotter : MonoBehaviour
             {
                 yValue = transA * (float)(Mathf.Abs(transK * (xValue - transD)) + transC);
 
-                // Differentiate
+                // Differentiate numerically using the centred three-point method
                 dyValue = ((transA * (float)(Mathf.Abs(transK * ((xValue + hValue) - transD)) + transC)) - (transA * (float)(Mathf.Abs(transK * ((xValue - hValue) - transD)) + transC))) / (hValue * 2);
             }
             // Exponential Function
@@ -142,7 +168,7 @@ public class FunctionPlotter : MonoBehaviour
             {
                 yValue = transA * (float)(Mathf.Pow(transK * baseN, (xValue - transD)) + transC);
 
-                // Differentiate
+                // Differentiate numerically using the centred three-point method
                 dyValue = ((transA * (float)(Mathf.Pow(transK * baseN, ((xValue + hValue) - transD)) + transC)) - (transA * (float)(Mathf.Pow(transK * baseN, ((xValue - hValue) - transD)) + transC))) / (hValue * 2);
             }
             // Square Root Function
@@ -150,7 +176,7 @@ public class FunctionPlotter : MonoBehaviour
             {
                 yValue = transA * (float)(Mathf.Sqrt(transK * (xValue - transD)) + transC);
 
-                // Differentiate
+                // Differentiate numerically using the centred three-point method
                 dyValue = ((transA * (float)(Mathf.Sqrt(transK * ((xValue + hValue) - transD)) + transC)) - (transA * (float)(Mathf.Sqrt(transK * ((xValue - hValue) - transD)) + transC))) / (hValue * 2);
             }
 
@@ -158,12 +184,14 @@ public class FunctionPlotter : MonoBehaviour
             {
                 yValue = transA * (float)(Mathf.Sin(transK * (xValue - transD)) + transC);
 
+                // Differentiate numerically using the centred three-point method
                 dyValue = transA * (float)(Mathf.Cos(transK * (xValue - transD)) + transC);
             }
             else if (functionType == FunctionType.Cosine)
             {
                 yValue = transA * (float)(Mathf.Cos(transK * (xValue - transD)) + transC);
 
+                // Differentiate numerically using the centred three-point method
                 dyValue = transA * (float)(Mathf.Sin(transK * (xValue - transD)) + transC);
             }
             // Add the coordinates to the array
@@ -179,3 +207,24 @@ public enum FunctionType
 {
     Power, Absolute, Exponential, SquareRoot, Sine, Cosine
 }
+
+/* 
+
+:: Numerical Differentiation Explanation ::
+
+You can't calculate the exact derivative of a function using a computer program (unless you're doing symbolic math... but that's another, way more complicated, topic).
+
+There are several approaches to computing a numerical derivative of a function. The simplest is the centered three-point method:
+
+Take a small number h
+Evaluate  [f(x+h) - f(x-h)] / 2h 
+Voilà, an approximation of f'(x), with only two function evaluations
+Another approach is the centered five-point method:
+
+Take a small number h
+Evaluate [f(x-2h) - 8f(x-h) + 8f(x+h) - f(x+2h)] / 12h
+Voilà, a better approximation of f'(x), but it requires more function evaluations
+
+In this program, we use the relatively simpler approach 'the three-point method.'
+
+*/
