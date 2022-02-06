@@ -33,20 +33,30 @@ public class FunctionPlotter : MonoBehaviour
     private LineRendererUI lineRenderer;
     private DerivRendererUI derivRenderer;
 
+    public GameObject lineSegment;
     public GameObject derivativeLine;
 
     private void Reset()
     {
+        FunctionType functionType;
+        functionType = this.functionType;
+
         PlotFunction(functionType);
     }
 
     private void OnValidate()
     {
+        FunctionType functionType;
+        functionType = this.functionType;
+
         PlotFunction(functionType);
     }
 
     private void Update()
     {
+        FunctionType functionType;
+        functionType = this.functionType;
+
         PlotFunction(functionType);
     }
 
@@ -58,6 +68,9 @@ public class FunctionPlotter : MonoBehaviour
         if (lineRenderer != null)
         {
             points.Clear();
+
+            lineSegment.SetActive(false);
+            lineSegment.SetActive(true);
 
             ComputeGraph(type, transA, transK, transC, transD, power, baseN);
             ComputeGraph(type, transA, transK, transC, transD, power, baseN);
@@ -87,7 +100,7 @@ public class FunctionPlotter : MonoBehaviour
     {
         Vector2Int gridOrigin = lineRenderer.gridSize / 2;
 
-        for (float i = -50; i <= 50; i += step)
+        for (float i = xStart; i <= xEnd; i += step)
         {
             float xValue = i;
             float yValue = 0;
