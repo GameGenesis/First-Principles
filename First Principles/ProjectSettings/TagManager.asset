@@ -6,12 +6,7 @@ TagManager:
   tags:
   - Dots
   - LineSegment
-<<<<<<< Updated upstream
-  - DerivativeLine
-=======
   - Derivative
-  - Equation
->>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX

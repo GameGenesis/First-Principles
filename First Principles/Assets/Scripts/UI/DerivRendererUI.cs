@@ -2,13 +2,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LineRendererUI : Graphic
+public class DerivRendererUI : Graphic
 {
     public Vector2Int gridSize;
 
     public List<Vector2> points = new List<Vector2>();
-
-    // List that stores the coordinates of the derivative graph; if showDerivative is false, draw the derivative graph on top of the original graph on the cartesian plane
 
     public float thickness = 10f;
 
