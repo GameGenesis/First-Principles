@@ -77,22 +77,28 @@ public class FunctionPlotter : MonoBehaviour
             GraphRefresh();
 
             ComputeGraph(type, transA, transK, transC, transD, power, baseN);
-            ComputeGraph(type, transA, transK, transC, transD, power, baseN);
 
             lineRenderer.points = points;
         }
 
-        if (differentiate == true)
+        if (differentiate == true && lineRenderer != null)
         {
             derivativeLine.SetActive(false);
             derivativeLine.SetActive(true);
 
-            dPoints.Clear();
+            if (derivRenderer != null)
+            {
 
-            ComputeGraph(type, transA, transK, transC, transD, power, baseN);
-            ComputeGraph(type, transA, transK, transC, transD, power, baseN);
+                dPoints.Clear();
 
-            derivRenderer.points = dPoints;
+                points.Clear();
+
+                GraphRefresh();
+
+                ComputeGraph(type, transA, transK, transC, transD, power, baseN);
+
+                derivRenderer.points = dPoints;
+            }
         }
 
         else if (differentiate == false)
@@ -161,10 +167,10 @@ public class FunctionPlotter : MonoBehaviour
                 dyValue = transA * (float)(Mathf.Sin(transK * (xValue - transD)) + transC);
             }
             // Add the coordinates to the array
-            points.Add(new Vector2(xValue + gridOrigin.x, yValue + gridOrigin.y));
+            this.points.Add(new Vector2(xValue + gridOrigin.x, yValue + gridOrigin.y));
 
             // Get the differentiated coordinates to another array
-            dPoints.Add(new Vector2(xValue + gridOrigin.x, dyValue + gridOrigin.y));
+            this.dPoints.Add(new Vector2(xValue + gridOrigin.x, dyValue + gridOrigin.y));
         }
     }
 }

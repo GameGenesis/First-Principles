@@ -8,6 +8,8 @@ public class LineRendererUI : Graphic
 
     public List<Vector2> points = new List<Vector2>();
 
+    // List that stores the coordinates of the derivative graph; if showDerivative is false, draw the derivative graph on top of the original graph on the cartesian plane
+
     public float thickness = 10f;
 
     private float width;
