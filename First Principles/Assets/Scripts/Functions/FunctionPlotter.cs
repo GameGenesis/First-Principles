@@ -87,7 +87,7 @@ public class FunctionPlotter : MonoBehaviour
     {
         Vector2Int gridOrigin = lineRenderer.gridSize / 2;
 
-        for (float i = 0; i <= 50; i += step)
+        for (float i = -50; i <= 50; i += step)
         {
             float xValue = i;
             float yValue = 0;
