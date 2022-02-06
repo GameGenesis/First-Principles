@@ -56,9 +56,6 @@ public class FunctionPlotter : MonoBehaviour
     private LineRendererUI lineRenderer;
     private DerivRendererUI derivRenderer;
 
-    public GameObject lineSegment;
-    public GameObject derivativeLine;
-
     private void Reset()
     {
         InitPlotFunction();
@@ -83,10 +80,16 @@ public class FunctionPlotter : MonoBehaviour
     }
 
     // Refresh ONLY the original function graph, not the derivative one
-    public void GraphRefresh()
+    public void RefreshLine()
     {
-        lineSegment.SetActive(false);
-        lineSegment.SetActive(true);
+        lineRenderer.enabled = false;
+        lineRenderer.enabled = true;
+    }
+
+    public void RefreshDeriv()
+    {
+        derivRenderer.enabled = false;
+        derivRenderer.enabled = true;
     }
 
     private void PlotFunction(FunctionType type)
@@ -97,31 +100,24 @@ public class FunctionPlotter : MonoBehaviour
         if (lineRenderer != null)
         {
             points.Clear();
-
-            GraphRefresh();
+            RefreshLine();
 
             ComputeGraph(type, transA, transK, transC, transD, power, baseN);
-
             lineRenderer.points = points;
         }
 
         if (differentiate == true && lineRenderer != null)
         {
             // Refresh ONLY the derivative graph & show on the UI
-            derivativeLine.SetActive(false);
-            derivativeLine.SetActive(true);
+            RefreshDeriv();
 
             if (derivRenderer != null)
             {
-
                 dPoints.Clear();
-
                 points.Clear();
-
-                GraphRefresh();
+                RefreshLine();
 
                 ComputeGraph(type, transA, transK, transC, transD, power, baseN);
-
                 derivRenderer.points = dPoints;
             }
         }
@@ -131,8 +127,7 @@ public class FunctionPlotter : MonoBehaviour
             dPoints.Clear();
 
             // Refresh ONLY the derivative graph & hide on the UI
-            derivativeLine.SetActive(true);
-            derivativeLine.SetActive(false);
+            RefreshDeriv();
         }
     }
 
