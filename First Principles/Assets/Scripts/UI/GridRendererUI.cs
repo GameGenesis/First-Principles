@@ -9,6 +9,9 @@ public class GridRendererUI : Graphic
     public float thickness = 2f;
     public float centerLineThickness = 6f;
 
+    public Color centerLine  = new Color32(255, 255, 255, 100);
+    public Color outsideLine = new Color32(255, 255, 255, 40);
+
     private float width;
     private float height;
     private float cellWidth;
@@ -67,7 +70,7 @@ public class GridRendererUI : Graphic
         float yPos = cellHeight * y;
 
         UIVertex vertex = UIVertex.simpleVert;
-        vertex.color = color;
+        vertex.color = outsideLine;
 
         vertex.position = new Vector3(xPos, yPos);
         vh.AddVert(vertex);
@@ -124,7 +127,7 @@ public class GridRendererUI : Graphic
         float centerLineOffset = centerLineThickness / 2;
 
         UIVertex vertex = UIVertex.simpleVert;
-        vertex.color = color;
+        vertex.color = centerLine;
 
         //Horizontal Line
         vertex.position = new Vector3(0, (height / 2) - centerLineOffset);
