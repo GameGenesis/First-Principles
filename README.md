@@ -1,4 +1,4 @@
-# First Principles
+# First Principles: An Interactive Module
 A graphing calculator that *actually* teaches you something.
 
 ## Work in Progress!
