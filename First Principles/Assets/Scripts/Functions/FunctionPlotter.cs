@@ -17,7 +17,7 @@ public class FunctionPlotter : MonoBehaviour
 
     public int power = 2;
 
-    private int hValue = (int)(Mathf.Pow(10, -8));
+    private float hValue = (float)(Mathf.Pow(10, -4));
 
     //The type of function to be plotted
     public FunctionType functionType;
@@ -126,8 +126,8 @@ public class FunctionPlotter : MonoBehaviour
             {
                 yValue = transA * (float)(Mathf.Pow(transK * (xValue - transD), power) + transC);
 
-                // Differentiate
-                dyValue = ((transA * (float)(Mathf.Pow(transK * ((xValue + hValue) - transD), power) + transC)) - (transA * (float)(Mathf.Pow(transK * (xValue - transD), power) + transC))) / hValue;
+                // Differentiate numerically using the centred three-point method
+                dyValue = ((transA * (float)(Mathf.Pow(transK * ((xValue + hValue) - transD), power) + transC)) - (transA * (float)(Mathf.Pow(transK * ((xValue - hValue) - transD), power) + transC))) / (hValue * 2);
             }
             // Absolute Value Function
             else if (functionType == FunctionType.Absolute)
@@ -135,7 +135,7 @@ public class FunctionPlotter : MonoBehaviour
                 yValue = transA * (float)(Mathf.Abs(transK * (xValue - transD)) + transC);
 
                 // Differentiate
-                dyValue = ((transA * (float)(Mathf.Abs(transK * ((xValue + hValue) - transD)) + transC)) - (transA * (float)(Mathf.Abs(transK * (xValue - transD)) + transC))) / hValue;
+                dyValue = ((transA * (float)(Mathf.Abs(transK * ((xValue + hValue) - transD)) + transC)) - (transA * (float)(Mathf.Abs(transK * ((xValue - hValue) - transD)) + transC))) / (hValue * 2);
             }
             // Exponential Function
             else if (functionType == FunctionType.Exponential)
@@ -143,7 +143,7 @@ public class FunctionPlotter : MonoBehaviour
                 yValue = transA * (float)(Mathf.Pow(transK * baseN, (xValue - transD)) + transC);
 
                 // Differentiate
-                dyValue = ((transA * (float)(Mathf.Pow(transK * baseN, ((xValue + hValue) - transD)) + transC)) - (transA * (float)(Mathf.Pow(transK * baseN, (xValue - transD)) + transC))) / hValue;
+                dyValue = ((transA * (float)(Mathf.Pow(transK * baseN, ((xValue + hValue) - transD)) + transC)) - (transA * (float)(Mathf.Pow(transK * baseN, ((xValue - hValue) - transD)) + transC))) / (hValue * 2);
             }
             // Square Root Function
             else if (functionType == FunctionType.SquareRoot)
@@ -151,7 +151,7 @@ public class FunctionPlotter : MonoBehaviour
                 yValue = transA * (float)(Mathf.Sqrt(transK * (xValue - transD)) + transC);
 
                 // Differentiate
-                dyValue = ((transA * (float)(Mathf.Sqrt(transK * ((xValue + hValue) - transD)) + transC)) - (transA * (float)(Mathf.Sqrt(transK * (xValue - transD)) + transC))) / hValue;
+                dyValue = ((transA * (float)(Mathf.Sqrt(transK * ((xValue + hValue) - transD)) + transC)) - (transA * (float)(Mathf.Sqrt(transK * ((xValue - hValue) - transD)) + transC))) / (hValue * 2);
             }
 
             else if (functionType == FunctionType.Sine)
