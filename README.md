@@ -1,5 +1,5 @@
 # First Principles: An Interactive Module
-A graphing calculator that *actually* teaches you something.
+A graphing calculator that *actually* teaches you something. Developed by Rayan Kaissi and John Seong. Powered by **Unity**.
 
 [Official Documentation](https://github.com/GameGenesis/First-Principles/wiki/First-Principles-Official-Documentation)
 
@@ -16,20 +16,6 @@ The game will be released with a total of *four* editions:
 4. Infinite Series: Let's Explore Above and Beyond
 
 <img width="1728" alt="Screen Shot 2022-02-06 at 3 52 27 PM" src="https://user-images.githubusercontent.com/35755386/152703228-c1e51a51-3e0b-4afe-b482-3fe072aa12e0.png">
-
----
-
-**Lead Developer, Pilot, Engineer**: Rayan Kaissi
-
-**Co-Developer, Mission Specialist, Graphic & Sound Artist**: John Seong
-
----
-
-Powered by the **Unity Game Engine**
-
-Expected release platforms: **Google Play** & **Steam**
-
-Expected release date: **TBD**
 
 ---
 
