@@ -2262,6 +2262,7 @@ MonoBehaviour:
   functionType: 0
   baseN: 2
   differentiate: 0
+  derivativeLine: {fileID: 221734593}
 --- !u!4 &1441103585
 Transform:
   m_ObjectHideFlags: 0

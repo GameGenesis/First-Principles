@@ -28,7 +28,7 @@ public class FunctionPlotter : MonoBehaviour
     private List<Vector2> points = new List<Vector2>();
 
     private LineRendererUI lineRenderer;
-    private GameObject derivativeLine;
+    public GameObject derivativeLine;
 
     private void Reset()
     {
@@ -48,8 +48,6 @@ public class FunctionPlotter : MonoBehaviour
     public void PlotFunction(FunctionType type)
     {
         lineRenderer = FindObjectOfType<LineRendererUI>();
-
-        derivativeLine = GameObject.FindWithTag("DerivativeLine");
 
         if (lineRenderer != null)
         {
