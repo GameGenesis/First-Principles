@@ -15,6 +15,8 @@ The game will be released in a total of *four* editions:
 3. Integral Calculus: The Most Powerful Humanmade Tool
 4. Infinite Series: Let's Explore Above and Beyond
 
+[Watch the Promotional Video](https://www.youtube.com/watch?v=yKqpSoZj574)
+
 <img width="1728" alt="Screen Shot 2022-02-06 at 3 52 27 PM" src="https://user-images.githubusercontent.com/35755386/152703228-c1e51a51-3e0b-4afe-b482-3fe072aa12e0.png">
 
 ---
