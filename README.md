@@ -1,7 +1,7 @@
 # First Principles: An Interactive Module
 A graphing calculator. Developed by [Rayan Kaissi](https://github.com/GameGenesis) and [John Seong](https://github.com/wonmor). Powered by **Unity** Game Engine.
 
-[Official Documentation](https://github.com/GameGenesis/First-Principles/wiki/First-Principles-Official-Documentation)
+[Official Documentation](https://github.com/GameGenesis/First-Principles/wiki/First-Principles-Official-Documentation) • [Watch the Promotional Video](https://www.youtube.com/watch?v=yKqpSoZj574)
 
 ---
 
@@ -14,8 +14,6 @@ The game will be released in a total of *four* editions:
 2. The Fundamentals of Calculus: Limits and Differentiation
 3. Integral Calculus: The Most Powerful Humanmade Tool
 4. Infinite Series: Let's Explore Above and Beyond
-
-[Watch the Promotional Video](https://www.youtube.com/watch?v=yKqpSoZj574)
 
 <img width="1728" alt="Screen Shot 2022-02-06 at 3 52 27 PM" src="https://user-images.githubusercontent.com/35755386/152703228-c1e51a51-3e0b-4afe-b482-3fe072aa12e0.png">
 
