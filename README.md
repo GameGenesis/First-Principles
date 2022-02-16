@@ -1,4 +1,4 @@
-# First Principles: An Interactive Module
+ee# First Principles: An Interactive Module
 A graphing calculator. Developed by [Rayan Kaissi](https://github.com/GameGenesis) and [John Seong](https://github.com/wonmor). Powered by **Unity** Game Engine.
 
 [Official Documentation](https://github.com/GameGenesis/First-Principles/wiki/First-Principles-Official-Documentation) • [Watch the Promotional Video](https://www.youtube.com/watch?v=yKqpSoZj574)
@@ -27,5 +27,3 @@ A puzzle game that visualizes the nature of a curve and its corresponding deriva
 ---
 
 **MIT** License | **First Principles** is a part of a **not-for-profit** and an **open-source** project *College Math For Toddlers*.
-
-![Logo](/FirstPrinciplesLogo.png)
