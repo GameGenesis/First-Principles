@@ -1,18 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SceneManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public enum CurrentState
     {
-        
+        MENU, GAME
+    };
+  
+    public void LoadScene(CurrentState cs) => cs switch
+    {
+        CurrentState.MENU => SceneManager.LoadScene("Menu"),
+        CurrentState.GAME => SceneManager.LoadScene("Game"),
+        _   => SceneManager.LoadScene("Menu")
+    };
+
+    public void ChangeToMenu()
+    {
+        SwitchScenes(CurrentState.MENU);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ChangeToGame()
     {
-        
+        SwitchScenes(CurrentState.GAME);
     }
 }
