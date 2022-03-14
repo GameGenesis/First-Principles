@@ -1,24 +1,10 @@
 /*
- * 
  * FunctionPlotter.cs Written by John Seong
  * An Open-Source Project
  * Main Features:
  * 1. Plot Functions
  * 2. Plot Their Corresponding First Derivatives
- * Enjoy :)
- * 
  */
-
-
-/*
-
-:: What is Differentation? ::
-
-In mathematics, the derivative of a function of a real variable measures the sensitivity
-to change of the function value with respect to a change in its argument.
-Derivatives are a fundamental tool of calculus.
-
-*/
 
 using System.Collections.Generic;
 using UnityEngine;
