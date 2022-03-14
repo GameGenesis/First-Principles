@@ -7,7 +7,11 @@ public class SceneFader : MonoBehaviour
 {
 
 	#region FIELDS
-	public Image fadeOutUIImage;
+	public Image fadeOutUIImage1; // White background
+	public Image fadeOutUIImage2; // Black background
+
+	private Image fadeOutUIImage;
+
 	public float fadeSpeed = 0.8f;
 
 	public enum FadeDirection
@@ -17,9 +21,25 @@ public class SceneFader : MonoBehaviour
 	}
 	#endregion
 
-	#region MONOBHEAVIOR
+	#region MONOBEHAVIOR
 	void OnEnable()
 	{
+		Scene currentScene = SceneManager.GetActiveScene();
+
+		if (currentScene.name == "Menu")
+        {
+			fadeOutUIImage = fadeOutUIImage1;
+			fadeOutUIImage.gameObject.SetActive(true);
+			fadeOutUIImage2.gameObject.SetActive(false);
+			ZoomIn();
+        }
+		else if (currentScene.name == "Game")
+		{
+			fadeOutUIImage = fadeOutUIImage2;
+			fadeOutUIImage.gameObject.SetActive(true);
+			fadeOutUIImage1.gameObject.SetActive(false);
+		}
+
 		StartCoroutine(Fade(FadeDirection.Out));
 	}
 	#endregion
@@ -64,13 +84,27 @@ public class SceneFader : MonoBehaviour
 	}
 	#endregion
 
+	private void ZoomIn()
+    {
+
+    }
+
 	public void LoadGame()
     {
+		fadeOutUIImage.gameObject.SetActive(false);
+		fadeOutUIImage = fadeOutUIImage2;
+		fadeOutUIImage.gameObject.SetActive(true);
+
+		// Coroutine allows developers to run different tasks simultaneously (for multitasking)
 		StartCoroutine(GameObject.FindObjectOfType<SceneFader>().FadeAndLoadScene(SceneFader.FadeDirection.In, "Game"));
     }
 
 	public void LoadMenu()
     {
+		fadeOutUIImage.gameObject.SetActive(false);
+		fadeOutUIImage = fadeOutUIImage1;
+		fadeOutUIImage.gameObject.SetActive(true);
+
 		StartCoroutine(GameObject.FindObjectOfType<SceneFader>().FadeAndLoadScene(SceneFader.FadeDirection.In, "Menu"));
     }
 }

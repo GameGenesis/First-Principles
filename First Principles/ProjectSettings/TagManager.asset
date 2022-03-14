@@ -9,6 +9,9 @@ TagManager:
   - Derivative
   - PlayButton
   - FadeImage
+  - EquationText
+  - MainUIContainer
+  - FadeImage2
   layers:
   - Default
   - TransparentFX
