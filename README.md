@@ -1,5 +1,5 @@
 # First Principles: An Interactive Module
-A Graphing Calculator. Developed by [Rayan Kaissi](https://github.com/GameGenesis) and [John Seong](https://github.com/wonmor). Powered by **Unity** Game Engine.
+A **Graphing** Calculator. Developed by [Rayan Kaissi](https://github.com/GameGenesis) and [John Seong](https://github.com/wonmor). Powered by **Unity** Game Engine.
 
 ---
 
