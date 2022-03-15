@@ -87,14 +87,11 @@ public class SceneFader : MonoBehaviour
 		fadeOutUIImage.color = new Color(fadeOutUIImage.color.r, fadeOutUIImage.color.g, fadeOutUIImage.color.b, alpha);
 		alpha += Time.deltaTime * (1.0f / fadeSpeed) * ((fadeDirection == FadeDirection.Out) ? -1 : 1);
 	}
-	#endregion
+    #endregion
 
-	private void ZoomIn()
-    {
+    private void ZoomIn() => Debug.Log("Zoomed In");
 
-    }
-
-	public void LoadGame()
+    public void LoadGame()
     {
 		fadeOutUIImage.gameObject.SetActive(false);
 		fadeOutUIImage = fadeOutUIImage2;
@@ -111,5 +108,10 @@ public class SceneFader : MonoBehaviour
 		fadeOutUIImage.gameObject.SetActive(true);
 
 		StartCoroutine(GameObject.FindObjectOfType<SceneFader>().FadeAndLoadScene(SceneFader.FadeDirection.In, "Menu"));
+    }
+
+	public void QuitGame()
+    {
+		Application.Quit();
     }
 }
