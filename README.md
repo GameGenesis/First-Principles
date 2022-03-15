@@ -19,7 +19,9 @@ A puzzle game that visualizes the nature of a curve and its corresponding deriva
 3. Integral Calculus: The Most Powerful Humanmade Tool
 4. Infinite Series: Let's Explore Above and Beyond
 
-<img width="1728" alt="Screen Shot 2022-02-11 at 10 15 24 PM" src="https://user-images.githubusercontent.com/35755386/153695203-d09858ab-5535-4946-af75-9a15042ca92e.png">
+<img width="1728" alt="Screen Shot 2022-03-15 at 2 57 39 PM" src="https://user-images.githubusercontent.com/35755386/158451505-71e056ee-cca4-42ee-a621-38c092c806f2.png">
+
+<img width="1728" alt="Screen Shot 2022-03-15 at 2 57 31 PM" src="https://user-images.githubusercontent.com/35755386/158451522-61e0c14c-57c3-4819-b023-b7d7c13075aa.png">
 
 ---
 
