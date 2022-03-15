@@ -48,16 +48,19 @@ public class FunctionPlotter : MonoBehaviour
     private void Reset()
     {
         InitPlotFunction();
+        RefreshGrid();
     }
 
     private void OnValidate()
     {
         InitPlotFunction();
+        RefreshGrid();
     }
 
     private void Update()
     {
         InitPlotFunction();
+        RefreshGrid();
     }
 
     public void InitPlotFunction()
@@ -79,6 +82,12 @@ public class FunctionPlotter : MonoBehaviour
     {
         derivRenderer.enabled = false;
         derivRenderer.enabled = true;
+    }
+
+    public void RefreshGrid()
+    {
+        FindObjectOfType<GridRendererUI>().enabled = false;
+        FindObjectOfType<GridRendererUI>().enabled = true;
     }
 
     private void PlotFunction(FunctionType type)
