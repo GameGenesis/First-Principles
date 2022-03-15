@@ -7,6 +7,7 @@
  */
 
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class FunctionPlotter : MonoBehaviour
@@ -38,6 +39,8 @@ public class FunctionPlotter : MonoBehaviour
     // Local points list
     private List<Vector2> points = new List<Vector2>();
     private List<Vector2> dPoints = new List<Vector2>();
+
+    [SerializeField] TextMeshProUGUI equationText;
 
     private LineRendererUI lineRenderer;
     private DerivRendererUI derivRenderer;
@@ -135,6 +138,9 @@ public class FunctionPlotter : MonoBehaviour
 
                 // Differentiate numerically using the centred three-point method
                 dyValue = ((transA * (float)(Mathf.Pow(transK * ((xValue + hValue) - transD), power) + transC)) - (transA * (float)(Mathf.Pow(transK * ((xValue - hValue) - transD), power) + transC))) / (hValue * 2);
+
+                // Remove zeroes from the equation output
+                equationText.text = $"f(x) = {transA}".Replace("1", "") + $"({transK}(x - {transD}))^{power}" + $" + ({transC})".Replace(" + (0)", "");
             }
             // Absolute Value Function
             else if (functionType == FunctionType.Absolute)
@@ -143,14 +149,23 @@ public class FunctionPlotter : MonoBehaviour
 
                 // Differentiate numerically using the centred three-point method
                 dyValue = ((transA * (float)(Mathf.Abs(transK * ((xValue + hValue) - transD)) + transC)) - (transA * (float)(Mathf.Abs(transK * ((xValue - hValue) - transD)) + transC))) / (hValue * 2);
+
+                equationText.text = $"f(x) = {transA}".Replace("1", "") + $"({transK}(x - {transD}))^{power}" + $" + ({transC})".Replace(" + (0)", "");
             }
             // Exponential Function
             else if (functionType == FunctionType.Exponential)
             {
-                yValue = transA * (float)(Mathf.Pow(transK * baseN, (xValue - transD)) + transC);
+                yValue = transA * (float)(Mathf.Pow(baseN, (transK * (xValue - transD))) + transC);
 
                 // Differentiate numerically using the centred three-point method
-                dyValue = ((transA * (float)(Mathf.Pow(transK * baseN, ((xValue + hValue) - transD)) + transC)) - (transA * (float)(Mathf.Pow(transK * baseN, ((xValue - hValue) - transD)) + transC))) / (hValue * 2);
+                dyValue = ((transA * (float)(Mathf.Pow(baseN, ((transK * (xValue + hValue) - transD))) + transC)) - (transA * (float)(Mathf.Pow(baseN, ((transK * (xValue - hValue) - transD))) + transC))) / (hValue * 2);
+            }
+            else if (functionType == FunctionType.NaturalExp)
+            {
+                yValue = transA * (float)(Mathf.Exp((transK * (xValue - transD))) + transC);
+
+                // Differentiate numerically using the centred three-point method
+                dyValue = ((transA * (float)(Mathf.Exp(((transK * (xValue + hValue) - transD))) + transC)) - (transA * (float)(Mathf.Exp(((transK * (xValue - hValue) - transD))) + transC))) / (hValue * 2);
             }
             // Square Root Function
             else if (functionType == FunctionType.SquareRoot)
@@ -175,6 +190,13 @@ public class FunctionPlotter : MonoBehaviour
                 // Differentiate numerically using the centred three-point method
                 dyValue = transA * (float)(Mathf.Sin(transK * (xValue - transD)) + transC);
             }
+            else if (functionType == FunctionType.Tangent)
+            {
+                yValue = transA * (float)(Mathf.Tan(transK * (xValue - transD)) + transC);
+
+                // Differentiate numerically using the centred three-point method
+                dyValue = ((transA * (float)(Mathf.Tan(transK * ((xValue + hValue) - transD)) + transC)) - (transA * (float)(Mathf.Tan(transK * ((xValue - hValue) - transD)) + transC))) / (hValue * 2);
+            }
             // Add the coordinates to the array
             this.points.Add(new Vector2(xValue + gridOrigin.x, yValue + gridOrigin.y));
 
@@ -186,7 +208,7 @@ public class FunctionPlotter : MonoBehaviour
 
 public enum FunctionType
 {
-    Power, Absolute, Exponential, SquareRoot, Sine, Cosine
+    Power, Absolute, Exponential, NaturalExp, Log, NaturalLog, SquareRoot, Sine, Cosine, Tangent
 }
 
 /* 
