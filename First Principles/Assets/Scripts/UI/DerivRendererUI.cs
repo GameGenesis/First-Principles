@@ -17,6 +17,7 @@ public class DerivRendererUI : Graphic
 
     private GridRendererUI grid;
 
+#if UNITY_EDITOR
     protected override void Reset()
     {
         base.Reset();
@@ -26,6 +27,7 @@ public class DerivRendererUI : Graphic
 
         UpdateGridSize();
     }
+#endif
 
     protected override void Awake()
     {

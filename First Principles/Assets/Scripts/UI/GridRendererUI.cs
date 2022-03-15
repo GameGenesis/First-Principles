@@ -19,6 +19,7 @@ public class GridRendererUI : Graphic
 
     private LabelManager labelManager;
 
+#if UNITY_EDITOR
     protected override void OnValidate()
     {
         base.OnValidate();
@@ -39,6 +40,7 @@ public class GridRendererUI : Graphic
         labelManager.GenerateLabels();
         SetVerticesDirty();
     }
+#endif
 
     protected override void OnPopulateMesh(VertexHelper vh)
     {

@@ -21,6 +21,7 @@ public class LineRendererUI : Graphic
 
     private GridRendererUI grid;
 
+#if UNITY_EDITOR
     protected override void Reset()
     {
         base.Reset();
@@ -30,6 +31,7 @@ public class LineRendererUI : Graphic
 
         UpdateGridSize();
     }
+#endif
 
     protected override void Awake()
     {
