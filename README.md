@@ -5,7 +5,7 @@ A Graphing Calculator. Developed by [Rayan Kaissi](https://github.com/GameGenesi
 
 ## Alpha Build 0.6
 
-[Official Documentation](https://github.com/GameGenesis/First-Principles/wiki/First-Principles-Official-Documentation) • [Watch the Promotional Video](https://www.youtube.com/watch?v=yKqpSoZj574) • [Download for Windows](https://github.com/GameGenesis/First-Principles/raw/main/WindowsPrototypeV1/First%20Principles.exe)
+[Official Documentation](https://github.com/GameGenesis/First-Principles/wiki/First-Principles-Official-Documentation) • [Watch the Promotional Video](https://www.youtube.com/watch?v=yKqpSoZj574)
 
 ---
 
