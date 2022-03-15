@@ -3,8 +3,6 @@ A graphing calculator. Developed by [Rayan Kaissi](https://github.com/GameGenesi
 
 [Official Documentation](https://github.com/GameGenesis/First-Principles/wiki/First-Principles-Official-Documentation) • [Watch the Promotional Video](https://www.youtube.com/watch?v=yKqpSoZj574)
 
-![FirstPrinciplesLogo](https://user-images.githubusercontent.com/35755386/158440969-a71395dd-8b9c-42a0-bb95-795da9eb57d5.png)
-
 ---
 
 ## Work in Progress!
