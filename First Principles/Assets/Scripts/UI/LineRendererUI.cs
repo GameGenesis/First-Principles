@@ -1,3 +1,5 @@
+// Written by Rayan Kaissi
+
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -100,7 +102,7 @@ public class LineRendererUI : Graphic
         return Mathf.Approximately(f, Mathf.RoundToInt(f));
     }
 
-    // Returns the greatest common divisor
+    // Returns the greatest common divisor using the Euclidean Algorithm
     public int GetGreatestCommonDivisor(int first, int second)
     {
         while (first != 0 && second != 0)

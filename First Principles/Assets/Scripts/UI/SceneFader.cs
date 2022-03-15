@@ -31,13 +31,18 @@ public class SceneFader : MonoBehaviour
 			fadeOutUIImage = fadeOutUIImage1;
 			fadeOutUIImage.gameObject.SetActive(true);
 			fadeOutUIImage2.gameObject.SetActive(false);
+
 			ZoomIn();
-        }
+
+			// FindObjectOfType<AudioManager>().PlayMusic("RainMusic");
+		}
 		else if (currentScene.name == "Game")
 		{
 			fadeOutUIImage = fadeOutUIImage2;
 			fadeOutUIImage.gameObject.SetActive(true);
 			fadeOutUIImage1.gameObject.SetActive(false);
+
+			// FindObjectOfType<AudioManager>().PlayMusic("ClassicalMusic");
 		}
 
 		StartCoroutine(Fade(FadeDirection.Out));

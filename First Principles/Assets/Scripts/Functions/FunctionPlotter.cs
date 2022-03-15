@@ -150,7 +150,7 @@ public class FunctionPlotter : MonoBehaviour
                 // Differentiate numerically using the centred three-point method
                 dyValue = ((transA * (float)(Mathf.Abs(transK * ((xValue + hValue) - transD)) + transC)) - (transA * (float)(Mathf.Abs(transK * ((xValue - hValue) - transD)) + transC))) / (hValue * 2);
 
-                equationText.text = $"f(x) = {transA}".Replace("1", "") + $"({transK}(x - {transD}))^{power}" + $" + ({transC})".Replace(" + (0)", "");
+                equationText.text = $"f(x) = {transA}".Replace("1", "") + $"|{transK}(x - {transD}))|" + $" + ({transC})".Replace(" + (0)", "");
             }
             // Exponential Function
             else if (functionType == FunctionType.Exponential)
