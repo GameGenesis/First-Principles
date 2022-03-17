@@ -27,7 +27,7 @@ A puzzle game that visualizes the nature of a curve and its corresponding deriva
 
 ## Dependencies
 
-[Unity Game Engine](https://unity.com)
+[**Unity** Game Engine](https://unity.com)
 
 [TextMeshPro](https://docs.unity3d.com/Manual/com.unity.textmeshpro.html)
 
