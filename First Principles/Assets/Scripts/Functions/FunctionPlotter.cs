@@ -1,6 +1,7 @@
 /*
  * FunctionPlotter.cs Written by John Seong
  * An Open-Source Project
+ *
  * Main Features:
  * 1. Plot Functions
  * 2. Plot Their Corresponding First Derivatives
@@ -149,7 +150,7 @@ public class FunctionPlotter : MonoBehaviour
                 dyValue = ((transA * (float)(Mathf.Pow(transK * ((xValue + hValue) - transD), power) + transC)) - (transA * (float)(Mathf.Pow(transK * ((xValue - hValue) - transD), power) + transC))) / (hValue * 2);
 
                 // Remove zeroes from the equation output
-                equationText.text = $"f(x) = {transA}".Replace("1", "") + $"({transK}(x - {transD}))^{power}" + $" + ({transC})".Replace(" + (0)", "");
+                equationText.text = $"f(x) = {transA}".Replace("1", "") + $"({transK}(x - ({transD})))^{power}" + $" + ({transC})".Replace(" + (0)", "");
             }
             // Absolute Value Function
             else if (functionType == FunctionType.Absolute)
@@ -159,7 +160,7 @@ public class FunctionPlotter : MonoBehaviour
                 // Differentiate numerically using the centred three-point method
                 dyValue = ((transA * (float)(Mathf.Abs(transK * ((xValue + hValue) - transD)) + transC)) - (transA * (float)(Mathf.Abs(transK * ((xValue - hValue) - transD)) + transC))) / (hValue * 2);
 
-                equationText.text = $"f(x) = {transA}".Replace("1", "") + $"|{transK}(x - {transD}))|" + $" + ({transC})".Replace(" + (0)", "");
+                equationText.text = $"f(x) = {transA}".Replace("1", "") + $"|{transK}(x - ({transD}))|" + $" + ({transC})".Replace(" + (0)", "");
             }
             // Exponential Function
             else if (functionType == FunctionType.Exponential)
@@ -168,6 +169,8 @@ public class FunctionPlotter : MonoBehaviour
 
                 // Differentiate numerically using the centred three-point method
                 dyValue = ((transA * (float)(Mathf.Pow(baseN, ((transK * (xValue + hValue) - transD))) + transC)) - (transA * (float)(Mathf.Pow(baseN, ((transK * (xValue - hValue) - transD))) + transC))) / (hValue * 2);
+
+                equationText.text = $"{transA}".Replace("1", "") + $"{baseN}^{transK}(x - ({transD}))" + $" + ({transC})".Replace(" + (0)", "");
             }
             else if (functionType == FunctionType.NaturalExp)
             {
@@ -175,6 +178,8 @@ public class FunctionPlotter : MonoBehaviour
 
                 // Differentiate numerically using the centred three-point method
                 dyValue = ((transA * (float)(Mathf.Exp(((transK * (xValue + hValue) - transD))) + transC)) - (transA * (float)(Mathf.Exp(((transK * (xValue - hValue) - transD))) + transC))) / (hValue * 2);
+
+                equationText.text = $"{transA}".Replace("1", "") + $"e^{transK}(x - ({transD}))" + $" + ({transC})".Replace(" + (0)", "");
             }
             // Square Root Function
             else if (functionType == FunctionType.SquareRoot)
@@ -185,6 +190,7 @@ public class FunctionPlotter : MonoBehaviour
                 dyValue = ((transA * (float)(Mathf.Sqrt(transK * ((xValue + hValue) - transD)) + transC)) - (transA * (float)(Mathf.Sqrt(transK * ((xValue - hValue) - transD)) + transC))) / (hValue * 2);
             }
 
+            // For periodic functions, the input value by default should be in radians
             else if (functionType == FunctionType.Sine)
             {
                 yValue = transA * (float)(Mathf.Sin(transK * (xValue - transD)) + transC);
