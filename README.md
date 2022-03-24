@@ -5,7 +5,7 @@ A **Graphing** Calculator. Developed by [Rayan Kaissi](https://github.com/GameGe
 
 ## Alpha Build 0.3
 
-*Development In Progress**
+*Development In Progress*
 
 [Official Documentation](https://github.com/GameGenesis/First-Principles/wiki/First-Principles-Official-Documentation) • [Watch the Promotional Video](https://www.youtube.com/watch?v=k0soEFAK-CQ) • [Live Demo](https://www.youtube.com/watch?v=yo540yl4Xhs)
 
