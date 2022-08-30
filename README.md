@@ -1,4 +1,4 @@
-<img width="300" alt="Screenshot 2022-08-30 at 1 53 22 PM" src="https://user-images.githubusercontent.com/35755386/187352165-4def6be5-9d9a-423d-9863-ea2c45b4e02d.png">
+<img width="150" alt="Screenshot 2022-08-30 at 1 53 22 PM" src="https://user-images.githubusercontent.com/35755386/187352165-4def6be5-9d9a-423d-9863-ea2c45b4e02d.png">
 
 # First Principles: An Interactive Module
 A **Graphing** Calculator. Developed by [Rayan Kaissi](https://github.com/GameGenesis) and [John Seong](https://github.com/wonmor). Powered by **Unity** Game Engine.
